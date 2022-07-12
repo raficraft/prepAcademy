@@ -1,0 +1,23 @@
+@import "./../../sass/function.scss";
+
+.header {
+  background-color: rgb(230, 230, 230);
+  padding: 2rem;
+  @include flexCenter();
+  gap: 3rem;
+
+  nav {
+    @include flexCenter();
+    gap: 3rem;
+
+    a {
+      font-weight: bold;
+      transition: 0.5s;
+
+      &:hover {
+        color: rgb(231, 146, 17);
+        transition: 0.5s;
+      }
+    }
+  }
+}
