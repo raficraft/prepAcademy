@@ -6,6 +6,7 @@ import S from "./movies.module.scss";
 
 export default function Media({ movies }) {
   function createItems() {
+    console.log("in card", movies);
     return movies.results.map((el, key) => {
       return <MediaCard info={el} key={key} />;
     });
