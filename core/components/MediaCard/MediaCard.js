@@ -1,5 +1,4 @@
 import React from "react";
-import Image from "next/Image";
 import { IMG_URL } from "../../../config/request";
 import S from "./Media_card.module.scss";
 
