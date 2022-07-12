@@ -9,7 +9,7 @@ export default function MediaCard({ info }) {
         <img src={`${IMG_URL}${info.poster_path}`} />
       </div>
       <footer>
-        <h4>{info.original_title}</h4>
+        <h4>{info.original_title ? info.original_title : info.name}</h4>
         <p className={S.details}>
           <span>Note :</span> <span>{info.vote_average}</span>
         </p>
