@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { API_KEY, IMG_URL } from "../../config/request";
+import { API_KEY } from "../../config/request";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import MediaCard from "../../core/components/MediaCard/MediaCard";
 import S from "./movies.module.scss";
 
 import useSWR from "swr";
@@ -23,11 +22,11 @@ export default function Media() {
   const { data, error } = useSWR(getUrl(slug, pagination), fetcher);
 
   useEffect(() => {
-    function getSlugWithNative() {
+    function getUrlInfo() {
       const pathArray = window.location.pathname.split("/");
       return pathArray[pathArray.length - 1];
     }
-    setSlug(getSlugWithNative());
+    setSlug(getUrlInfo());
     setPagination(1);
   }, [router.query.slug]);
 
@@ -43,10 +42,13 @@ export default function Media() {
 
       <div className={S.movies_pages}>
         <Pagination callback={setPagination} page={pagination}></Pagination>
-        {!data ? (
+        {!data && !error ? (
           <div>Loading ... </div>
         ) : (
-          <List_media data={data}></List_media>
+          <>
+            <List_media data={data} slug={slug}></List_media>
+            <Pagination callback={setPagination} page={pagination}></Pagination>
+          </>
         )}
       </div>
     </>
