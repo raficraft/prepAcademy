@@ -16,6 +16,10 @@ export default function Layout({ children }) {
           <Link href="/media/tv">
             <a>TV pages</a>
           </Link>
+
+          <Link href="/media">
+            <a>TV pages</a>
+          </Link>
         </nav>
       </header>
 
