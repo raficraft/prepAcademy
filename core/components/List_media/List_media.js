@@ -5,11 +5,11 @@ import S from "./List_media.module.scss";
 
 export default function List_media({ data, slug }) {
   function createItems() {
-    console.log(data);
+    // console.log(data);
     return data.results.map((el, key) => {
       return (
-        <Link href={`details/${slug}_${el.id}`}>
-          <a className={S.container} key={key}>
+        <Link href={`details/${slug}_${el.id}`} key={key}>
+          <a className={S.container}>
             <div className={S.img_container}>
               <img src={`${IMG_URL}${el.poster_path}`} />
             </div>

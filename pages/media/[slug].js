@@ -1,36 +1,14 @@
-import React, { useEffect, useState } from "react";
-import { API_KEY } from "../../config/request";
+import React from "react";
 import Head from "next/head";
-import { useRouter } from "next/router";
 import S from "./movies.module.scss";
-
-import useSWR from "swr";
 import Pagination from "../../core/components/Filter/Pagination/Pagination";
 import List_media from "../../core/components/List_media/List_media";
-
-const fetcher = (...args) => fetch(...args).then((res) => res.json());
+import { useURL_TMDB } from "../../core/hooks/URL_TMDB/useURL_TMDB";
 
 export default function Media() {
-  const router = useRouter();
-  const [pagination, setPagination] = useState(1);
-  const [slug, setSlug] = useState("movie");
+  const [SWR, params, setParams] = useURL_TMDB("discover");
 
-  function getUrl(slug, page) {
-    return `https://api.themoviedb.org/3/discover/${slug}?sort_by=popularity.desc&${API_KEY}&language=fr-FR&region=FR&page=${page}`;
-  }
-
-  const { data, error } = useSWR(getUrl(slug, pagination), fetcher);
-
-  useEffect(() => {
-    function getUrlInfo() {
-      const pathArray = window.location.pathname.split("/");
-      return pathArray[pathArray.length - 1];
-    }
-    setSlug(getUrlInfo());
-    setPagination(1);
-  }, [router.query.slug]);
-
-  if (error) return <div>Failed to load</div>;
+  if (SWR.error) return <div>Failed to load</div>;
 
   return (
     <>
@@ -41,13 +19,12 @@ export default function Media() {
       </Head>
 
       <div className={S.movies_pages}>
-        <Pagination callback={setPagination} page={pagination}></Pagination>
-        {!data && !error ? (
+        <Pagination callback={setParams} page={params.pagination}></Pagination>
+        {!SWR.data && !SWR.error ? (
           <div>Loading ... </div>
         ) : (
           <>
-            <List_media data={data} slug={slug}></List_media>
-            <Pagination callback={setPagination} page={pagination}></Pagination>
+            <List_media data={SWR.data} slug={params.slug}></List_media>
           </>
         )}
       </div>
