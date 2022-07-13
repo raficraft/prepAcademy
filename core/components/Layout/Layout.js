@@ -10,10 +10,10 @@ export default function Layout({ children }) {
           <Link href="/">
             <a>Home pages</a>
           </Link>
-          <Link href="/movies">
+          <Link href="/media/movie">
             <a>Movies pages</a>
           </Link>
-          <Link href="/TV">
+          <Link href="/media/tv">
             <a>TV pages</a>
           </Link>
         </nav>

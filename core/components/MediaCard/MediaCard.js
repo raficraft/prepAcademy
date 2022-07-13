@@ -11,7 +11,7 @@ export default function MediaCard({ info }) {
       <footer>
         <h4>{info.original_title ? info.original_title : info.name}</h4>
         <p className={S.details}>
-          <span>Note :</span> <span>{info.vote_average}</span>
+          <span>Note :</span> <span>{info.vote_average * 10}%</span>
         </p>
         <p className={S.details}>
           <span>Popularité :</span> <span>{info.popularity}</span>

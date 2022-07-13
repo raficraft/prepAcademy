@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 export function useFetch(url) {
+  console.log(url);
   const [state, setState] = useState({
     currentData: [],
     loading: true,
@@ -16,14 +17,8 @@ export function useFetch(url) {
         setState((S) => ({
           ...S,
           currentData: data,
+          loading: false,
         }));
-
-        setTimeout(() => {
-          setState((S) => ({
-            ...S,
-            loading: false,
-          }));
-        }, 500);
       } else {
         setState((S) => ({
           ...S,
@@ -42,6 +37,6 @@ export function useFetch(url) {
       loading: true,
     }));
     fetchData(url);
-  }, [url]);
+  }, []);
   return [state];
 }
