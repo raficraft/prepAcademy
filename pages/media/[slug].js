@@ -92,7 +92,20 @@ export default function Media() {
       </Head>
 
       <div className={S.movies_pages}>
+        {pagination > 1 && (
+          <button
+            onClick={() => {
+              setPagination(pagination - 1);
+            }}
+          >
+            prev
+          </button>
+        )}
         <h1>{router.query.slug} pages</h1>
+        <p>
+          pages : {pagination} / {Math.ceil(data.total_pages / 20)}
+        </p>
+
         <button
           onClick={() => {
             setPagination(pagination + 1);
