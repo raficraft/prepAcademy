@@ -7,45 +7,31 @@ import S from "./movies.module.scss";
 
 import useSWR from "swr";
 import Pagination from "../../core/components/Filter/Pagination/Pagination";
+import List_media from "../../core/components/List_media/List_media";
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
 export default function Media() {
   const router = useRouter();
   const [pagination, setPagination] = useState(1);
+  const [slug, setSlug] = useState("movie");
 
-  const { data, error } = useSWR(
-    `https://api.themoviedb.org/3/discover/${router.query.slug}?sort_by=popularity.desc&${API_KEY}&language=fr-FR&region=FR&page=${pagination}`,
-    fetcher
-  );
+  function getUrl(slug, page) {
+    return `https://api.themoviedb.org/3/discover/${slug}?sort_by=popularity.desc&${API_KEY}&language=fr-FR&region=FR&page=${page}`;
+  }
+
+  const { data, error } = useSWR(getUrl(slug, pagination), fetcher);
 
   useEffect(() => {
+    function getSlugWithNative() {
+      const pathArray = window.location.pathname.split("/");
+      return pathArray[pathArray.length - 1];
+    }
+    setSlug(getSlugWithNative());
     setPagination(1);
   }, [router.query.slug]);
 
-  function createItems() {
-    return data.results.map((el, key) => {
-      return (
-        <div className={S.container} key={key}>
-          <div className={S.img_container}>
-            <img src={`${IMG_URL}${el.poster_path}`} />
-          </div>
-          <footer>
-            <h4>{el.original_title ? el.original_title : el.name}</h4>
-            <p className={S.details}>
-              <span>Note :</span> <span>{el.vote_average * 10}%</span>
-            </p>
-            <p className={S.details}>
-              <span>Popularité :</span> <span>{el.popularity}</span>
-            </p>
-          </footer>
-        </div>
-      );
-    });
-  }
-
   if (error) return <div>Failed to load</div>;
-  if (!data) return <div>Loading...</div>;
 
   return (
     <>
@@ -57,8 +43,11 @@ export default function Media() {
 
       <div className={S.movies_pages}>
         <Pagination callback={setPagination} page={pagination}></Pagination>
-
-        <div className={S.list_item}>{createItems()}</div>
+        {!data ? (
+          <div>Loading ... </div>
+        ) : (
+          <List_media data={data}></List_media>
+        )}
       </div>
     </>
   );
