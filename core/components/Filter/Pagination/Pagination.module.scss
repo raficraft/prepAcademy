@@ -1,0 +1,10 @@
+@import "./../../../sass/function.scss";
+
+.pagination {
+  @include flexCenter();
+  @include responsiveContainer(100%);
+  margin: 2rem;
+  &_content {
+    @include flexCenter();
+  }
+}
