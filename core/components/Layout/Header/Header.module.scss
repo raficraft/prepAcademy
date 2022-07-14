@@ -8,6 +8,7 @@
   padding: 1.5rem 0;
   @include flex(row, space-between);
   gap: 3rem;
+  position: relative;
   z-index: 20;
 
   nav {
@@ -31,7 +32,7 @@
   }
   aside {
     @include flexCenter();
-    gap: 3rem;
+    gap: 2rem;
 
     .svg_container {
       @include size(30px);

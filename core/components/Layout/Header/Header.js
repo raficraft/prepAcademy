@@ -1,11 +1,12 @@
 import Link from "next/link";
 import React, { useContext } from "react";
 import { TMDB_icon } from "../../../assets/SVG/logo";
-import { Cross_icon, Search_icon } from "../../../assets/SVG/UI_icon";
+import { Icon_cross, Icon_search } from "../../../assets/SVG/UI_icon";
 import { UIContext } from "../../../context/UIProvider/UIProvider";
 import Layout_container from "../Layout_container/Layout_container";
 import S from "./Header.module.scss";
 import SearchBar from "./SearchBar/SearchBar";
+import ToggleLang from "./ToggleLang/ToggleLang";
 
 export default function Header() {
   const { UI, callback } = useContext(UIContext);
@@ -28,10 +29,10 @@ export default function Header() {
             </Link>
           </nav>
           <aside>
-            <p>lang</p>
+            <ToggleLang />
             {!UI.search ? (
               <div className={`${S.svg_container} ${S.svg_container__search}`}>
-                <Search_icon
+                <Icon_search
                   onClick={() => {
                     callback.toggleSearchBar();
                   }}
@@ -39,7 +40,7 @@ export default function Header() {
               </div>
             ) : (
               <div className={`${S.svg_container} ${S.svg_container__cross}`}>
-                <Cross_icon
+                <Icon_cross
                   onClick={() => {
                     callback.toggleSearchBar();
                   }}

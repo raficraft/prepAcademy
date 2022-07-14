@@ -1,5 +1,5 @@
 import React from "react";
-import { Search_icon } from "../../../../assets/SVG/UI_icon";
+import { Icon_search } from "../../../../assets/SVG/UI_icon";
 import Layout_container from "../../Layout_container/Layout_container";
 import S from "./SearchBar.module.scss";
 
@@ -7,7 +7,7 @@ export default function SearchBar() {
   return (
     <Layout_container style={S.layout}>
       <form className={S.form}>
-        <Search_icon />
+        <Icon_search />
         <input
           className={S.searchInput}
           type="text"
