@@ -1,0 +1,19 @@
+@import "./../../../../sass/function.scss";
+
+.navigation_mobil {
+  position: absolute;
+  height: 100%;
+  background-color: aqua;
+  left: 0;
+  transition: 0.8s;
+
+  &[data-show="false"] {
+    transition: 0.8s;
+    transform: translateX(-150%);
+  }
+
+  &[data-show="true"] {
+    transition: 0.8s;
+    transform: translateX(0);
+  }
+}
