@@ -15,9 +15,9 @@ export default function Burger_menu() {
         }}
         data-show={UI.nav_mobil}
       >
-        <span></span>
-        <span></span>
-        <span></span>
+        <span className={`${S.item} ${S.item_top}`}></span>
+        <span className={`${S.item} ${S.item_middle}`}></span>
+        <span className={`${S.item} ${S.item_bottom}`}></span>
       </div>
       <Navigation_mobil />
     </>

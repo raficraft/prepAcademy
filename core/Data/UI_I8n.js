@@ -7,7 +7,7 @@ export const UI_I18n_nav = {
     },
   },
   tv: {
-    link: "/media/movie",
+    link: "/media/tv",
     text: {
       EN: "Tv show",
       FR: "Émissions télévisées",
