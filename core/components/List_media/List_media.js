@@ -5,7 +5,7 @@ import S from "./List_media.module.scss";
 
 export default function List_media({ data, slug }) {
   function createItems() {
-    // console.log(data);
+    console.log(data);
     return data.results.map((el, key) => {
       return (
         <Link href={`details/${slug}_${el.id}`} key={key}>
@@ -14,7 +14,7 @@ export default function List_media({ data, slug }) {
               <img src={`${IMG_URL}${el.poster_path}`} />
             </div>
             <footer>
-              <h4>{el.original_title ? el.original_title : el.name}</h4>
+              <h4>{el.original_title ? el.title : el.name}</h4>
               <p className={S.details}>
                 <span>Note :</span> <span>{el.vote_average * 10}%</span>
               </p>

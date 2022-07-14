@@ -1,0 +1,69 @@
+@import "./../../../sass/function.scss";
+
+.layout {
+  background-color: rgba(3, 37, 65, 1);
+}
+
+.header {
+  padding: 1.5rem 0;
+  @include flex(row, space-between, center);
+  gap: 3rem;
+  position: relative;
+  z-index: 20;
+
+  nav {
+    @include flexCenter();
+    gap: 3rem;
+
+    .logo_container {
+      @include size(154px, 20px);
+    }
+
+    a {
+      font-weight: bold;
+      transition: 0.5s;
+      color: white;
+      text-transform: capitalize;
+
+      &:hover {
+        color: rgb(231, 146, 17);
+        transition: 0.5s;
+      }
+    }
+
+    .nav_link {
+      @media screen and (max-width: 700px) {
+        display: none;
+      }
+    }
+  }
+  aside {
+    @include flexCenter();
+    gap: 2rem;
+
+    .svg_container {
+      @include size(30px);
+      cursor: pointer;
+      &__search {
+        svg {
+          @include size(inherit);
+          color: rgba(1, 180, 228, 1);
+        }
+      }
+
+      &__cross {
+        svg {
+          @include size(inherit);
+          color: rgb(255, 255, 255);
+        }
+      }
+      svg {
+        transition: 0.3s;
+      }
+      svg:hover {
+        transition: 0.3s;
+        transform: scale(1.1);
+      }
+    }
+  }
+}

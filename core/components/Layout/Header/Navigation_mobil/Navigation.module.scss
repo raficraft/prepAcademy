@@ -1,0 +1,30 @@
+@import "./../../../../sass/function.scss";
+
+.navigation_mobil {
+  position: absolute;
+  height: 100%;
+  background-color: rgba(3, 37, 65, 1);
+  left: 0;
+  transition: 0.8s;
+  padding: 4rem 2rem;
+
+  &[data-show="false"] {
+    transition: 0.8s;
+    transform: translateX(-150%);
+  }
+
+  &[data-show="true"] {
+    transition: 0.8s;
+    transform: translateX(0);
+  }
+  nav {
+    @include flex(column);
+    gap: 1rem;
+    a {
+      font-weight: bold;
+      transition: 0.5s;
+      color: white;
+      text-transform: capitalize;
+    }
+  }
+}

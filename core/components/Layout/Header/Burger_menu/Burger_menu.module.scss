@@ -1,0 +1,48 @@
+@import "./../../../../sass/function.scss";
+
+.burger_menu {
+  @include size(24px, 21px);
+  content: " ";
+  @include flex(column, space-between, center);
+  transition: 0.5s;
+  cursor: pointer;
+  z-index: 30;
+  display: none;
+
+  @media screen and (max-width: 700px) {
+    @include flex(column, space-between, center);
+  }
+
+  .item {
+    @include size(100%, 3px);
+    border-radius: 2px;
+    content: " ";
+    background-color: white;
+    transition: 0.8s;
+    transform: translateY(0);
+    &--middle {
+      transition: 0.8s;
+      transform: translateX(0);
+    }
+  }
+
+  &[data-show="true"] {
+    transition: 0.8s;
+    transform: translateY(0);
+    .item {
+      &_middle {
+        transition: 0.8s;
+        transform: translateX(-500%);
+      }
+
+      &_top {
+        transition: 0.8s;
+        transform: translateY(9px) rotate(45deg);
+      }
+      &_bottom {
+        transition: 0.8s;
+        transform: translateY(-9px) rotate(-45deg);
+      }
+    }
+  }
+}
