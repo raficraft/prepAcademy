@@ -13,6 +13,18 @@
   svg {
     @include size(1rem);
   }
+
+  .cross_icon {
+    cursor: pointer;
+    svg {
+      color: grey;
+      transition: 0.5s;
+      &:hover {
+        transition: 0.5s;
+        color: black;
+      }
+    }
+  }
 }
 
 .searchInput {

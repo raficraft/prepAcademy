@@ -25,6 +25,7 @@ export default function ToggleLang() {
             <span
               onClick={() => {
                 callback.toggleLanguage("FR");
+                callback.toggleLanguageSelect();
               }}
             >
               <button type="button">Français</button>
@@ -33,6 +34,7 @@ export default function ToggleLang() {
             <span
               onClick={() => {
                 callback.toggleLanguage("EN");
+                callback.toggleLanguageSelect();
               }}
             >
               <button type="button">Anglais</button>

@@ -3,6 +3,7 @@ import React, { useContext } from "react";
 import { TMDB_icon } from "../../../assets/SVG/logo";
 import { Icon_cross, Icon_search } from "../../../assets/SVG/UI_icon";
 import { UIContext } from "../../../context/UIProvider/UIProvider";
+import { UI_I18n_nav } from "../../../Data/UI_I8n";
 import Layout_container from "../Layout_container/Layout_container";
 import S from "./Header.module.scss";
 import SearchBar from "./SearchBar/SearchBar";
@@ -22,10 +23,10 @@ export default function Header() {
               </a>
             </Link>
             <Link href="/media/movie">
-              <a>Movies</a>
+              <a>{UI_I18n_nav.movie.text[UI.language]}</a>
             </Link>
             <Link href="/media/tv">
-              <a>Series</a>
+              <a>{UI_I18n_nav.tv.text[UI.language]}</a>
             </Link>
           </nav>
           <aside>
