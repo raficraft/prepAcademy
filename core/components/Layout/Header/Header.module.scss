@@ -9,7 +9,7 @@
 }
 
 .header {
-  padding: 1.5rem;
+  padding: 1.5rem 3rem;
   @include flex(row, space-between);
   gap: 3rem;
 
@@ -35,5 +35,14 @@
   aside {
     @include flexCenter();
     gap: 3rem;
+
+    .search_icon_container {
+      @include size(30px);
+      cursor: pointer;
+      svg {
+        @include size(inherit);
+        color: rgba(1, 180, 228, 1);
+      }
+    }
   }
 }

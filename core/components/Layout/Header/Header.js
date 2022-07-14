@@ -1,10 +1,14 @@
 import Link from "next/link";
-import React from "react";
+import React, { useContext } from "react";
 import { TMDB_icon } from "../../../assets/SVG/logo";
+import { Search_icon } from "../../../assets/SVG/UI_icon";
+import { UIContext } from "../../../context/UIProvider/UIProvider";
 import Layout_container from "../Layout_container/Layout_container";
 import S from "./Header.module.scss";
 
 export default function Header() {
+  const { UI, callback } = useContext(UIContext);
+
   return (
     <Layout_container style={S.layout}>
       <header className={S.header}>
@@ -15,17 +19,24 @@ export default function Header() {
             </a>
           </Link>
           <Link href="/media/movie">
-            <a>Movies pages</a>
+            <a>Movies</a>
           </Link>
           <Link href="/media/tv">
-            <a>TV pages</a>
+            <a>Series</a>
           </Link>
         </nav>
         <aside>
           <p>lang</p>
-          <p>search</p>
+          <div className={S.search_icon_container}>
+            <Search_icon />
+          </div>
         </aside>
       </header>
+      {UI.search && (
+        <div>
+          <h1>searchBar</h1>
+        </div>
+      )}
     </Layout_container>
   );
 }
