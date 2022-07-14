@@ -1,6 +1,7 @@
 import Link from "next/link";
 import React from "react";
 import { IMG_URL } from "../../../config/request";
+import RadialChart from "../RadialChart/RadialChart";
 import S from "./List_media.module.scss";
 
 export default function List_media({ data, slug }) {
@@ -12,12 +13,21 @@ export default function List_media({ data, slug }) {
           <a className={S.container}>
             <div className={S.img_container}>
               <img src={`${IMG_URL}${el.poster_path}`} />
+              <div className={S.radial_container}>
+                <RadialChart
+                  score={el.vote_average * 10}
+                  min={0}
+                  max={100}
+                  lineWidth={4}
+                  size={50}
+                  padding={4}
+                  animationInterval={Number(key) * 1}
+                />
+              </div>
             </div>
             <footer>
               <h4>{el.original_title ? el.title : el.name}</h4>
-              <p className={S.details}>
-                <span>Note :</span> <span>{el.vote_average * 10}%</span>
-              </p>
+
               <p className={S.details}>
                 <span>Popularité :</span> <span>{el.popularity}</span>
               </p>

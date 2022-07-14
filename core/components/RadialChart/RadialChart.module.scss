@@ -1,26 +1,21 @@
+@import "./../../sass/function.scss";
+
 .radialContainer {
-  display: flex;
-  flex-direction: column;
+  @include flexCenter(column);
   margin: 10px;
 
   .radialContent {
-    min-width: 100px;
-    height: 100px;
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(8, 28, 34, 1);
     position: relative;
     border-radius: 50%;
-    border: 3px solid rgb(182, 182, 182);
     box-sizing: content-box;
-    box-shadow: 2px 6px 4px 0 rgba(27, 27, 28, 0.4),
-      2px 2px 6px 4px rgba(2, 2, 2, 0.6);
+    @include flexCenter(column);
 
     input {
       position: absolute;
-      top: 32px;
-      left: 0px;
-      max-width: 100px;
-      font-size: 32px;
+      font-size: 16px;
       text-align: center;
+      font-weight: bold;
       border: none;
       text-shadow: 1px 1px 2px rgb(0, 0, 0), 0 0 1em rgb(0, 0, 0),
         0 0 0.5em rgb(0, 0, 0);

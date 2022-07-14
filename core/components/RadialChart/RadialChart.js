@@ -4,14 +4,14 @@ import { drawCircle, drawRadial } from "./draw";
 import styles from "./RadialChart.module.scss";
 
 export default function RadialChart({
-  score,
-  color,
-  min,
-  max,
-  size,
-  lineWidth,
-  strokeStyle,
-  padding,
+  score = 50,
+  color = "#FF0000",
+  min = 0,
+  max = 100,
+  size = 100,
+  lineWidth = 12,
+  strokeStyle = "#0389f0",
+  padding = 9,
   labelPosition,
   animationInterval = 1,
   children,
@@ -19,8 +19,25 @@ export default function RadialChart({
   const canvasRef = useRef();
   const colorRef = useRef();
   const inputRef = useRef();
-  !color ? (color = "#ff0000") : (color = color);
+
   const [inputValue, setInputValue] = useState(0);
+
+  function getColor() {
+    let newColor = strokeStyle;
+
+    if (score > 70) {
+      newColor = "#209c15";
+    } else if (score > 30) {
+      strokeStyle = "#d2d531";
+    } else if (score > 0) {
+      newColor = "#f03203";
+    }
+
+    console.log(newColor);
+    return newColor;
+  }
+
+  console.log(getColor());
 
   const increment = () => {
     return setInputValue((s) => s + 1);
@@ -34,15 +51,24 @@ export default function RadialChart({
     const colorCircle = colorRef.current;
     const ctx = colorCircle.getContext("2d");
     //draw background circle
-    setTimeout(() => {
-      for (let index = 0; index <= score * 10; index++) {
-        let ratio = (index - min) / (max - min) / 10;
-
-        setTimeout(() => {
-          drawCircle({ ctx, size, lineWidth, strokeStyle, padding, ratio });
-        }, index * (300 / 60));
-      }
-    }, animationInterval * 300);
+    if (score > 0) {
+      setTimeout(() => {
+        for (let index = 0; index <= score * 1; index++) {
+          let ratio = (index - min) / (max - min) / 1;
+          setTimeout(() => {
+            drawCircle({
+              ctx,
+              size,
+              lineWidth,
+              strokeStyle: getColor(),
+              padding,
+              ratio,
+              size,
+            });
+          }, index * (300 / 60));
+        }
+      }, animationInterval * 300);
+    }
   };
 
   useEffect(() => {
@@ -55,14 +81,16 @@ export default function RadialChart({
       padding,
       strokeStyle: "rgba(216,216,216,1)",
     });
-
     getCircle(inputValue, score);
   }, []);
 
   return (
     <div className={styles.radialContainer}>
       {children && labelPosition === "top" && children}
-      <div className={styles.radialContent}>
+      <div
+        className={styles.radialContent}
+        style={{ width: `${size}px`, height: `${size}px` }}
+      >
         <canvas width={size} height={size} ref={canvasRef}></canvas>
         <canvas width={size} height={size} ref={colorRef}></canvas>
         <input
@@ -71,8 +99,14 @@ export default function RadialChart({
           ref={inputRef}
           min={min}
           max={max}
+          style={{ width: `${size}px`, height: `${size}px` }}
         />
-        <input type="text" value={score} disabled />
+        <input
+          type="text"
+          value={score === 0 ? "NR" : `${score}%`}
+          disabled
+          style={{ width: `${size}px`, height: `${size}px` }}
+        />
       </div>
       {(children && labelPosition === "bottom") ||
         (children && !labelPosition && children)}
