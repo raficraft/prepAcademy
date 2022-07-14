@@ -1,5 +1,15 @@
 @import "./core/sass/function.scss";
 
+:root {
+  --layout_width: 1440px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 h1 {
   color: rgba(0, 0, 0, 1);
 }
@@ -12,8 +22,7 @@ h4 {
   @include responsiveContainer(100%);
   @include flexCenter();
   &_inside {
-    @include responsiveContainer(100%);
+    @include responsiveContainer(1440px);
     background-color: rgb(194, 194, 206);
-    padding: 4rem 2rem;
   }
 }

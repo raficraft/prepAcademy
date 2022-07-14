@@ -10,18 +10,18 @@
 }
 
 .container {
-  @include responsiveContainer(300px);
+  @include responsiveContainer(182px);
   @include flex(column, space-between, center);
   background-color: rgb(255, 255, 255);
-  padding: 1rem 1.5rem;
   border-radius: 8px;
-  align-self: stretch;
+  height: 520px;
 
   .img_container {
-    @include responsiveContainer(200px);
+    @include responsiveContainer(182px);
+    aspect-ratio: 25/38;
 
     img {
-      border-radius: 8px;
+      border-radius: 8px 8px 0 0;
       object-fit: cover;
       width: 100%;
       height: 100%;
@@ -29,6 +29,7 @@
   }
 
   footer {
+    padding: 0 1rem;
     h4 {
       @include responsiveContainer(100%);
       text-align: center;

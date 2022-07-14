@@ -3,4 +3,5 @@
 .movies_pages {
   @include responsiveContainer(100%);
   @include flex(column);
+  padding: 4rem 2rem;
 }
