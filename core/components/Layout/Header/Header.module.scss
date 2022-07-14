@@ -10,6 +10,9 @@
   gap: 3rem;
   position: relative;
   z-index: 20;
+  @media screen and (max-width: 600px) {
+    gap: 0;
+  }
 
   nav {
     @include flexCenter();
@@ -40,6 +43,10 @@
   aside {
     @include flexCenter();
     gap: 2rem;
+
+    @media screen and (max-width: 600px) {
+      gap: 1rem;
+    }
 
     .svg_container {
       @include size(30px);

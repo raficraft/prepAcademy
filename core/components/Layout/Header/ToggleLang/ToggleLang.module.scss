@@ -23,6 +23,10 @@
   border: 1px solid rgb(194, 194, 194);
   @include flex(column);
   gap: 1rem;
+
+  @media screen and (max-width: 1600px) {
+    right: 0;
+  }
   &:before {
     @include emptyContent();
     background-color: rgb(255, 255, 255);
@@ -31,6 +35,12 @@
     top: -8px;
     left: centerAbsolute(16px);
     transform: rotate(45deg);
+    @media screen and (max-width: 1600px) {
+      left: 215px;
+    }
+    @media screen and (max-width: 600px) {
+      left: 231px;
+    }
   }
 
   footer {
