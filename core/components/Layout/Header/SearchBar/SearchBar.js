@@ -1,10 +1,22 @@
 import React from "react";
+import { Search_icon } from "../../../../assets/SVG/UI_icon";
 import Layout_container from "../../Layout_container/Layout_container";
+import S from "./SearchBar.module.scss";
 
 export default function SearchBar() {
   return (
-    <Layout_container>
-      <div>SearchBar</div>
+    <Layout_container style={S.layout}>
+      <form className={S.form}>
+        <Search_icon />
+        <input
+          className={S.searchInput}
+          type="text"
+          id="search"
+          name="search"
+          placeholder="Rechercher un film, une série..."
+          pattern="^[a-zA-Z0-9]$"
+        />
+      </form>
     </Layout_container>
   );
 }

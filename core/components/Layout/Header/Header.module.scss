@@ -5,9 +5,10 @@
 }
 
 .header {
-  padding: 1.5rem 3rem;
+  padding: 1.5rem 0;
   @include flex(row, space-between);
   gap: 3rem;
+  z-index: 20;
 
   nav {
     @include flexCenter();
@@ -32,12 +33,28 @@
     @include flexCenter();
     gap: 3rem;
 
-    .search_icon_container {
+    .svg_container {
       @include size(30px);
       cursor: pointer;
+      &__search {
+        svg {
+          @include size(inherit);
+          color: rgba(1, 180, 228, 1);
+        }
+      }
+
+      &__cross {
+        svg {
+          @include size(inherit);
+          color: rgb(255, 255, 255);
+        }
+      }
       svg {
-        @include size(inherit);
-        color: rgba(1, 180, 228, 1);
+        transition: 0.3s;
+      }
+      svg:hover {
+        transition: 0.3s;
+        transform: scale(1.1);
       }
     }
   }

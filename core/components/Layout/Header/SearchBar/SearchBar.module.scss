@@ -1,0 +1,30 @@
+@import "./../../../../sass/function.scss";
+
+.layout {
+  position: relative;
+  border-bottom: 1px solid rgb(187, 187, 187);
+}
+
+.form {
+  @include flexCenter();
+  @include responsiveContainer(100%);
+  position: relative;
+
+  svg {
+    @include size(1rem);
+  }
+}
+
+.searchInput {
+  border: none;
+  flex: 1;
+  padding: 0.5rem 0 0.5rem 1rem;
+  font-size: 1rem;
+  font-style: italic;
+  font-family: Arial, sans-serif;
+  height: 44px;
+
+  &:focus {
+    outline: none;
+  }
+}
