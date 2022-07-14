@@ -7,6 +7,7 @@ export default function UIProvider({ children }) {
     language: "FR",
     language_select: false,
     search: false,
+    nav_mobil: false,
   });
 
   const callback = {
@@ -19,6 +20,9 @@ export default function UIProvider({ children }) {
 
     toggleLanguage(language) {
       SetUI((S) => ({ ...S, language: language }));
+    },
+    toggleNavMobil() {
+      SetUI((S) => ({ ...S, nav_mobil: !UI.nav_mobil }));
     },
   };
 

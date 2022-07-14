@@ -1,0 +1,22 @@
+@import "./../../../../sass/function.scss";
+
+.burger_menu {
+  @include size(22px, 22px);
+  content: " ";
+  @include flex(column, space-between, center);
+  transition: 0.5s;
+  cursor: pointer;
+  z-index: 30;
+  display: none;
+
+  @media screen and (max-width: 700px) {
+    @include flex(column, space-between, center);
+  }
+
+  span {
+    @include size(100%, 3px);
+    border-radius: 2px;
+    content: " ";
+    background-color: white;
+  }
+}

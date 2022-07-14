@@ -6,7 +6,7 @@
 
 .header {
   padding: 1.5rem 0;
-  @include flex(row, space-between);
+  @include flex(row, space-between, center);
   gap: 3rem;
   position: relative;
   z-index: 20;
@@ -28,6 +28,12 @@
       &:hover {
         color: rgb(231, 146, 17);
         transition: 0.5s;
+      }
+    }
+
+    .nav_link {
+      @media screen and (max-width: 700px) {
+        display: none;
       }
     }
   }
