@@ -1,11 +1,7 @@
 @import "./../../../sass/function.scss";
 
 .layout {
-  @include flexCenter();
   background-color: rgba(3, 37, 65, 1);
-  div {
-    @include responsiveContainer(var(--layout_width));
-  }
 }
 
 .header {

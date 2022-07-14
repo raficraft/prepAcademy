@@ -18,6 +18,14 @@ h4 {
   font-size: 1rem;
 }
 
+.layout_wrapper {
+  @include flexCenter();
+}
+
+.layout_width {
+  @include responsiveContainer(var(--layout_width));
+}
+
 .wrapper {
   @include responsiveContainer(100%);
   @include flexCenter();

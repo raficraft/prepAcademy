@@ -8,13 +8,13 @@ export default function UIProvider({ children }) {
     search: false,
   });
 
-  callBack = {
+  const callback = {
     toggleSearchBar() {
-      SetUI((S) => ({ ...S, search: !search }));
+      SetUI((S) => ({ ...S, search: !UI.search }));
     },
   };
 
   return (
-    <UIContext.Provider value={{ UI, callBack }}>{children}</UIContext.Provider>
+    <UIContext.Provider value={{ UI, callback }}>{children}</UIContext.Provider>
   );
 }
