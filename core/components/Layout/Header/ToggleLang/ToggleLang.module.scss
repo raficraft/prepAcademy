@@ -1,11 +1,11 @@
 @import "./../../../../sass/function.scss";
 
 .lang_button {
+  position: relative;
+  @include flexCenter();
+  @include size(30px);
   border: 2px solid white;
   border-radius: 5px;
-  @include size(30px);
-  @include flexCenter();
-  position: relative;
   p {
     color: white;
     line-height: 1rem;
@@ -13,27 +13,27 @@
 }
 
 .country_list {
-  background-color: rgb(255, 255, 255);
   position: absolute;
-  top: calc(100% - 10px);
-  width: 300px;
   right: -75px;
+  top: calc(100% - 10px);
+  @include flex(column);
+  width: 300px;
+  gap: 1rem;
   padding: 1rem;
+  background-color: rgb(255, 255, 255);
   border-radius: 5px;
   border: 1px solid rgb(194, 194, 194);
-  @include flex(column);
-  gap: 1rem;
 
   @media screen and (max-width: 1600px) {
     right: 0;
   }
   &:before {
-    @include emptyContent();
-    background-color: rgb(255, 255, 255);
-    @include size(16px);
     position: absolute;
     top: -8px;
     left: centerAbsolute(16px);
+    @include emptyContent();
+    @include size(16px);
+    background-color: rgb(255, 255, 255);
     transform: rotate(45deg);
     @media screen and (max-width: 1600px) {
       left: 215px;
@@ -45,24 +45,24 @@
 
   footer {
     @include flex(column);
-    gap: 0.75rem;
     @include responsiveContainer(100%);
+    gap: 0.75rem;
     span {
       @include flex(row, space-between, center);
       @include responsiveContainer(100%);
       padding: 0.5rem 1rem;
       border-radius: 5px;
-      cursor: pointer;
       transition: 0.5s;
+      cursor: pointer;
 
       &:hover {
-        transition: 0.5s;
         background-color: rgb(204, 204, 204);
+        transition: 0.5s;
       }
       button {
-        border: none;
-        background-color: transparent;
         font-weight: 700;
+        background-color: transparent;
+        border: none;
       }
       svg {
         height: 2rem;

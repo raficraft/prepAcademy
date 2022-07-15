@@ -2,15 +2,15 @@
 
 .radialContainer {
   @include flex(row);
-  margin: 0 0 0 0.75rem;
   height: 50px;
+  margin: 0 0 0 0.75rem;
 
   .radialContent {
-    background-color: rgba(8, 28, 34, 1);
-    position: relative;
-    border-radius: 50%;
-    box-sizing: content-box;
     @include flexCenter(column);
+    position: relative;
+    box-sizing: content-box;
+    background-color: rgba(8, 28, 34, 1);
+    border-radius: 50%;
 
     input {
       position: absolute;
@@ -22,8 +22,8 @@
         0 0 0.5em rgb(0, 0, 0);
 
       &:disabled {
-        background-color: transparent;
         color: rgb(255, 255, 255);
+        background-color: transparent;
       }
     }
 
@@ -37,11 +37,11 @@
   }
 
   .radialLabel {
-    text-align: center;
     margin: 1rem 0;
-    text-transform: capitalize;
     font-size: 16px;
     color: white;
+    text-align: center;
+    text-transform: capitalize;
     transform: rotate(-20deg) translateX(20px);
     text-shadow: 1px 1px 2px rgb(0, 0, 0), 0 0 1em rgb(0, 0, 0),
       0 0 0.5em rgb(0, 0, 0);

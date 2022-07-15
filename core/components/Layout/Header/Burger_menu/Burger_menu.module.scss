@@ -1,9 +1,9 @@
 @import "./../../../../sass/function.scss";
 
 .burger_menu {
+  @include flex(column, space-between, center);
   @include size(24px, 21px);
   content: " ";
-  @include flex(column, space-between, center);
   transition: 0.5s;
   cursor: pointer;
   z-index: 30;
