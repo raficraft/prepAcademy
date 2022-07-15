@@ -48,8 +48,8 @@ export default function Media() {
               ></Pagination>
             </div>
           </aside>
-          {!SWR.data && !SWR.error ? (
-            <div>Loading ... </div>
+          {!SWR.data ? (
+            <div className="loading">Loading ... </div>
           ) : (
             <>
               <List_media data={SWR.data} slug={params.slug}></List_media>

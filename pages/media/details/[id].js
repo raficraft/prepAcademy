@@ -1,7 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { API_KEY, IMG_URL } from "../../../config/request";
-import { useRouter } from "next/router";
-import useSWR from "swr";
+import React from "react";
+import { IMG_URL_original } from "../../../config/request";
 import S from "./details.module.scss";
 import { useURL_TMDB } from "../../../core/hooks/URL_TMDB/useURL_TMDB";
 
@@ -14,7 +12,7 @@ export default function Media_info() {
         <section>
           <div className={S.banner}>
             <div className={S.banner_content__img}>
-              <img src={`${IMG_URL}${SWR.data.backdrop_path}`} />
+              <img src={`${IMG_URL_original}${SWR.data.backdrop_path}`} />
             </div>
           </div>
         </section>

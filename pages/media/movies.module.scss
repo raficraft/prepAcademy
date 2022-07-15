@@ -13,6 +13,7 @@
     @include flex(row);
     gap: 2rem;
     margin: 4rem 0;
+    @include responsiveContainer(100%);
 
     .bloc_aside {
       background-color: rgb(255, 255, 255);
@@ -20,6 +21,10 @@
       border-radius: 8px;
       border: var(--border);
       box-shadow: var(--shadow);
+      min-width: 260px;
     }
   }
+}
+
+.loading {
 }
