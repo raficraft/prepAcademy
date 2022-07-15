@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Head from "next/head";
 import S from "./movies.module.scss";
 import Pagination from "../../core/components/Filter/Pagination/Pagination";
@@ -34,7 +34,7 @@ export default function Media() {
       <section className={S.media_page}>
         <header>
           <h2>{`${UI_I18n_title_pages[params.slug][UI.language]}  ${
-            UI_I18n_title_word[CALL_URL][UI.language]
+            UI_I18n_title_word[`discover`][UI.language]
           }`}</h2>
         </header>
         <div className={S.media_page__content}>
@@ -50,9 +50,9 @@ export default function Media() {
             </div>
             <div className={S.bloc_aside}>
               <header>
-                <h3>Navigation</h3>
+                <h3>Filtrer</h3>
               </header>
-              <Filter createURL={paramsURL} />
+              <Filter CALL_URL={setCAll_URL} />
             </div>
           </aside>
           {!SWR.data ? (

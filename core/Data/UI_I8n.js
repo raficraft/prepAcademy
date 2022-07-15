@@ -2,15 +2,15 @@ export const UI_I18n_nav = {
   movie: {
     link: "/media/movie",
     text: {
-      EN: "movies",
       FR: "films",
+      EN: "movies",
     },
   },
   tv: {
     link: "/media/tv",
     text: {
-      EN: "Tv show",
       FR: "Émissions télévisées",
+      EN: "Tv show",
     },
   },
 };

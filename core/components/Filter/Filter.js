@@ -1,9 +1,22 @@
 import React from "react";
 
-export default function Filter({ createURL }) {
+export default function Filter({ CALL_URL }) {
   return (
     <div>
-      <button>TEST A-Z</button>
+      <button
+        onClick={() => {
+          CALL_URL("discover");
+        }}
+      >
+        populaire
+      </button>
+      <button
+        onClick={() => {
+          CALL_URL("discoverByName");
+        }}
+      >
+        TEST A-Z
+      </button>
     </div>
   );
 }

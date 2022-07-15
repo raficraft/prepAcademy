@@ -3,11 +3,43 @@
 .banner_content__img {
   @include responsiveContainer(100%);
   height: 59vh;
+  position: relative;
+  &:before {
+    content: "";
+    @include fullAbsolute();
+    background-color: rgba(182, 182, 182, 0.4);
+    backdrop-filter: blur(5px);
+  }
 
   img {
     object-position: top;
     object-fit: cover;
     width: 100%;
     height: 100%;
+  }
+
+  .backdrop_fail {
+    background-color: rgba(3, 37, 65, 1);
+    @include flex(column, center, flex-end);
+    @include responsiveContainer(100%);
+    aspect-ratio: 25/38;
+    padding: 0 2rem;
+    position: relative;
+    @include responsiveContainer(100%);
+    height: 59vh;
+
+    h2 {
+      @include responsiveContainer(100%);
+      text-align: right;
+      font-size: 4rem;
+      color: white;
+    }
+
+    &:before {
+      content: "";
+      @include fullAbsolute();
+      background-color: rgba(182, 182, 182, 0.4);
+      backdrop-filter: blur(2px);
+    }
   }
 }

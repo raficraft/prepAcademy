@@ -27,6 +27,10 @@ export function useURL_TMDB(request) {
       return `https://api.themoviedb.org/3/discover/${slug}?sort_by=popularity.desc&${API_KEY}${this.getLanguage()}&region=FR&page=${pagination}`;
     },
 
+    discoverByName(slug = params.slug, pagination = params.pagination) {
+      return `https://api.themoviedb.org/3/discover/${slug}?sort_by=original_title.asc&${API_KEY}${this.getLanguage()}&region=FR&page=${pagination}`;
+    },
+
     media(slug = params.slug, id = params.id) {
       return `https://api.themoviedb.org/3/${slug}/${id}?${API_KEY}${this.getLanguage()}`;
     },

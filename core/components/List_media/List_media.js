@@ -23,13 +23,21 @@ export default function List_media({ data, slug }) {
         >
           <a className={S.container}>
             <div className={`${S.img_container} img_media`}>
-              <Image
-                objectFit="cover"
-                src={`${IMG_URL}${el.poster_path}`}
-                alt={el.original_title ? el.title : el.name}
-                width={size_img.x}
-                height={size_img.y}
-              />
+              {el.poster_path !== null ? (
+                <Image
+                  objectFit="cover"
+                  src={`${IMG_URL}${el.poster_path}`}
+                  alt={el.original_title ? el.title : el.name}
+                  width={size_img.x}
+                  height={size_img.y}
+                />
+              ) : (
+                <div className={S.poster_fail}>
+                  <h2>No</h2>
+                  <h2>POSTER</h2>
+                </div>
+              )}
+
               <div className={S.radial_container}>
                 <RadialChart
                   score={el.vote_average * 10}

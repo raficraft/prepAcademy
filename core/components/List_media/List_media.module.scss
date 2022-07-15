@@ -32,6 +32,21 @@
       object-fit: cover;
       border-radius: 8px 8px 0 0;
     }
+
+    .poster_fail {
+      background-color: rgba(3, 37, 65, 1);
+      @include flexCenter(column);
+      @include responsiveContainer(100%);
+      aspect-ratio: 25/38;
+      border-radius: 8px 8px 0 0;
+
+      h2 {
+        @include responsiveContainer(100%);
+        text-align: center;
+        font-size: 2rem;
+        color: white;
+      }
+    }
   }
 
   .radial_container {
