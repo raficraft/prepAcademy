@@ -26,7 +26,6 @@ export const drawCircle = ({
   padding = 0,
   ratio,
 }) => {
-  console.log("in Draw", strokeStyle);
   ctx.clearRect(0, 0, size, size);
   ctx.beginPath();
   //Full Circle ctx.arc(100, 100, 85, -(1 / 2) * Math.PI, 3/2 Math.PI);

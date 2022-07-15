@@ -21,3 +21,14 @@ export const UI_I18n_searchBar = {
     EN: "Search for a movie, a series..",
   },
 };
+
+export const UI_I18n_title_pages = {
+  movie: {
+    FR: "films",
+    EN: "Movies",
+  },
+  TV: {
+    FR: "Émissions télévisées",
+    EN: "TV show",
+  },
+};

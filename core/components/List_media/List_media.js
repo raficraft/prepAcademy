@@ -1,6 +1,7 @@
 import Link from "next/link";
 import React from "react";
 import { IMG_URL } from "../../../config/request";
+import { Icon_heart } from "../../assets/SVG/UI_icon";
 import RadialChart from "../RadialChart/RadialChart";
 import S from "./List_media.module.scss";
 
@@ -9,7 +10,11 @@ export default function List_media({ data, slug }) {
     console.log(data);
     return data.results.map((el, key) => {
       return (
-        <Link href={`details/${slug}_${el.id}`} key={key}>
+        <Link
+          href={`details/${slug}_${el.id}`}
+          key={key}
+          title={el.original_title ? el.title : el.name}
+        >
           <a className={S.container}>
             <div className={S.img_container}>
               <img src={`${IMG_URL}${el.poster_path}`} />
@@ -28,8 +33,16 @@ export default function List_media({ data, slug }) {
             <footer>
               <h4>{el.original_title ? el.title : el.name}</h4>
 
-              <p className={S.details}>
-                <span>Popularité :</span> <span>{el.popularity}</span>
+              <p
+                className={S.details}
+                onClick={(e) => {
+                  e.stopPropagation();
+                }}
+              >
+                <p>{el.vote_count}</p>
+                <span className={S.icon_heart}>
+                  <Icon_heart />
+                </span>
               </p>
             </footer>
           </a>

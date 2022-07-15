@@ -11,14 +11,17 @@
 
 .container {
   @include responsiveContainer(182px);
-  @include flex(column, space-between, center);
+  @include flex(column, flex-start, center);
   background-color: rgb(255, 255, 255);
   border-radius: 8px;
-  height: 520px;
+  padding: 0 0 1rem 0;
+  align-self: stretch;
 
   .img_container {
     @include responsiveContainer(182px);
     aspect-ratio: 25/38;
+    position: relative;
+    margin-bottom: 2rem;
 
     img {
       border-radius: 8px 8px 0 0;
@@ -28,11 +31,24 @@
     }
   }
 
+  .radial_container {
+    position: absolute;
+    bottom: -25px;
+    @include responsiveContainer(100%);
+  }
+
   footer {
+    @include flex(column);
     padding: 0 1rem;
+    gap: 0.75rem;
     h4 {
       @include responsiveContainer(100%);
-      text-align: center;
+      text-align: left;
+      font-weight: 700;
+
+      &:hover {
+        color: rgb(33, 123, 175);
+      }
     }
     @include responsiveContainer(100%);
 
@@ -40,8 +56,27 @@
       @include responsiveContainer(100%);
       @include flex(row, space-between);
 
-      span:last-child {
-        font-weight: bold;
+      p {
+        font-weight: 700;
+      }
+
+      .icon_heart {
+        border-radius: 50%;
+        background-color: black;
+        @include size(1.25rem);
+        @include flexCenter();
+        transition: 0.5s;
+        svg {
+          color: white;
+          @include size(0.75rem);
+        }
+      }
+
+      &:hover {
+        .icon_heart {
+          transition: 0.5s;
+          background-color: rgb(224, 69, 69);
+        }
       }
     }
   }

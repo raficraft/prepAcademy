@@ -33,11 +33,8 @@ export default function RadialChart({
       newColor = "#f03203";
     }
 
-    console.log(newColor);
     return newColor;
   }
-
-  console.log(getColor());
 
   const increment = () => {
     return setInputValue((s) => s + 1);
