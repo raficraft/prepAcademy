@@ -9,19 +9,17 @@ export default function Media_info() {
   return (
     <>
       {params.id > 0 && SWR.data ? (
-        <section>
-          <div className={S.banner}>
-            <div className={S.banner_content__img}>
-              {SWR.data.backdrop_path !== null ? (
-                <img src={`${IMG_URL_original}${SWR.data.backdrop_path}`} />
-              ) : (
-                <div className={S.backdrop_fail}>
-                  <h2>No</h2>
-                  <h2>image</h2>
-                  <h2>available</h2>
-                </div>
-              )}
-            </div>
+        <section className={S.banner}>
+          <div className={S.banner_content__img}>
+            {SWR.data.backdrop_path !== null ? (
+              <img src={`${IMG_URL_original}${SWR.data.backdrop_path}`} />
+            ) : (
+              <div className={S.backdrop_fail}>
+                <h2>No</h2>
+                <h2>image</h2>
+                <h2>available</h2>
+              </div>
+            )}
           </div>
         </section>
       ) : (

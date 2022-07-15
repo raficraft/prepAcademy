@@ -12,7 +12,7 @@ import { UIContext } from "../../core/context/UIProvider/UIProvider";
 import Filter from "../../core/components/Filter/Filter";
 
 export default function Media() {
-  const [CALL_URL, setCAll_URL] = useState("discover");
+  const [CALL_URL, setCAll_URL] = useState("discoverDESC");
   const [SWR, params, paramsURL] = useURL_TMDB(CALL_URL);
   const { UI, callback } = useContext(UIContext);
 
@@ -31,39 +31,41 @@ export default function Media() {
         <link rel="icon" href="/favicon.png" />
       </Head>
 
-      <section className={S.media_page}>
-        <header>
-          <h2>{`${UI_I18n_title_pages[params.slug][UI.language]}  ${
-            UI_I18n_title_word[`discover`][UI.language]
-          }`}</h2>
-        </header>
-        <div className={S.media_page__content}>
-          <aside className={S.aside_container}>
-            <div className={S.bloc_aside}>
-              <header>
-                <h3>Navigation</h3>
-              </header>
-              <Pagination
-                callback={paramsURL.setPagination}
-                page={params.pagination}
-              ></Pagination>
-            </div>
-            <div className={S.bloc_aside}>
-              <header>
-                <h3>Filtrer</h3>
-              </header>
-              <Filter CALL_URL={setCAll_URL} />
-            </div>
-          </aside>
-          {!SWR.data ? (
-            <div className="loading">Loading ... </div>
-          ) : (
-            <>
-              <List_media data={SWR.data} slug={params.slug}></List_media>
-            </>
-          )}
-        </div>
-      </section>
+      <div className="wrapper_inside">
+        <section className={S.media_page}>
+          <header>
+            <h2>{`${UI_I18n_title_pages[params.slug][UI.language]}  ${
+              UI_I18n_title_word[`discover`][UI.language]
+            }`}</h2>
+          </header>
+          <div className={S.media_page__content}>
+            <aside className={S.aside_container}>
+              <div className={S.bloc_aside}>
+                <header>
+                  <h3>Navigation</h3>
+                </header>
+                <Pagination
+                  callback={paramsURL.setPagination}
+                  page={params.pagination}
+                ></Pagination>
+              </div>
+              <div className={S.bloc_aside}>
+                <header>
+                  <h3>{UI_I18n_title_word.filter[UI.language]}</h3>
+                </header>
+                <Filter CALL_URL={setCAll_URL} />
+              </div>
+            </aside>
+            {!SWR.data ? (
+              <div className="loading">Loading ... </div>
+            ) : (
+              <>
+                <List_media data={SWR.data} slug={params.slug}></List_media>
+              </>
+            )}
+          </div>
+        </section>
+      </div>
     </>
   );
 }

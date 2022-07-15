@@ -10,9 +10,7 @@ export default function Layout({ children }) {
     <>
       <Header />
       {UI.search && <SearchBar />}
-      <main className="wrapper">
-        <div className="wrapper_inside">{children}</div>
-      </main>
+      <main className="wrapper">{children}</main>
     </>
   );
 }

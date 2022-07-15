@@ -38,4 +38,8 @@ export const UI_I18n_title_word = {
     FR: "populaires",
     EN: "popular",
   },
+  filter: {
+    FR: "Filtrer",
+    EN: "Filter",
+  },
 };

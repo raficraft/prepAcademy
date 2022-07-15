@@ -15,20 +15,26 @@ export function useURL_TMDB(request) {
     pagination: 1,
     language: "FR",
     id: 0,
-    router: {},
-    SWR: {},
   });
 
   const paramsURL = {
     getLanguage() {
       return `&language=${UI.language.toLowerCase()}-${UI.language}`;
     },
-    discover(slug = params.slug, pagination = params.pagination) {
-      return `https://api.themoviedb.org/3/discover/${slug}?sort_by=popularity.desc&${API_KEY}${this.getLanguage()}&region=FR&page=${pagination}`;
+    discoverASC(slug = params.slug, pagination = params.pagination) {
+      return `https://api.themoviedb.org/3/discover/${slug}?sort_by=popularity.asc&${API_KEY}${this.getLanguage()}&region=FR&page=${pagination}`;
     },
 
-    discoverByName(slug = params.slug, pagination = params.pagination) {
+    discoverDESC(slug = params.slug, pagination = params.pagination) {
+      return `https://api.themoviedb.org/3/discover/${slug}?${API_KEY}&sort_by=popularity.desc&${this.getLanguage()}&region=FR&page=${pagination}`;
+    },
+
+    discoverByNameASC(slug = params.slug, pagination = params.pagination) {
       return `https://api.themoviedb.org/3/discover/${slug}?sort_by=original_title.asc&${API_KEY}${this.getLanguage()}&region=FR&page=${pagination}`;
+    },
+
+    discoverByNameDESC(slug = params.slug, pagination = params.pagination) {
+      return `https://api.themoviedb.org/3/discover/${slug}?sort_by=original_title.desc&${API_KEY}${this.getLanguage()}&region=FR&page=${pagination}`;
     },
 
     media(slug = params.slug, id = params.id) {
@@ -41,7 +47,16 @@ export function useURL_TMDB(request) {
   };
 
   const defineParams = {
-    discover() {
+    discoverASC() {
+      const pathArray = window.location.pathname.split("/");
+      setParams((S) => ({
+        ...S,
+        slug: pathArray[pathArray.length - 1],
+        pagination: 1,
+      }));
+    },
+
+    discoverDESC() {
       const pathArray = window.location.pathname.split("/");
       setParams((S) => ({
         ...S,
@@ -63,7 +78,6 @@ export function useURL_TMDB(request) {
 
   useEffect(() => {
     defineParams[request]();
-    setParams((S) => ({ ...S, router: router }));
   }, [router.query.slug]);
 
   const SWR = useSWR(paramsURL[request](), fetcher);
