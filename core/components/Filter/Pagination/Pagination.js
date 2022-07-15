@@ -1,59 +1,76 @@
+import { useRouter } from "next/router";
 import React, { useEffect } from "react";
+import { debounce } from "../../../utils/debounce";
 import S from "./Pagination.module.scss";
 
 export default function Pagination({ callback, page }) {
-  console.log("page in component", page);
+  const router = useRouter();
+
+  function incrementPage() {
+    callback(page + 1);
+  }
+
+  function uncrementPage() {
+    const newPage = page - 1 === 0 ? 1 : page - 1;
+    callback(newPage);
+  }
+
   function keyBoardNavigation(e) {
+    console.log(page);
     if (e.key === "ArrowLeft") {
-      const newPage = page - 1 === 0 ? 1 : page - 1;
-      callback((S) => ({ ...S, pagination: newPage }));
+      uncrementPage();
     }
 
     if (e.key === "ArrowRight") {
-      console.log(page);
-      callback((S) => ({ ...S, pagination: page + 1 }));
+      incrementPage();
     }
   }
 
   useEffect(() => {
-    document.addEventListener("keyup", (e) => {
-      keyBoardNavigation(e);
-    });
+    document.addEventListener(
+      "keyup",
+      debounce((e) => {
+        keyBoardNavigation(e);
+      }),
+      300
+    );
 
     return () => {
       document.removeEventListener("keyup", (e) => {
         keyBoardNavigation(e);
       });
     };
-  }, [page]);
+  }, [page, router.query.slug]);
 
   return (
-    <header className={S.pagination}>
-      <div className={S.pagination_content}>
-        {page > 1 && (
-          <button
-            onClick={() => {
-              callback((S) => ({ ...S, pagination: page - 1 }));
-            }}
-          >
-            prev
-          </button>
-        )}
-
-        <div>
-          <input type="number" defaultValue={page} />
-
-          {/* <p>/ {Math.ceil(data.total_pages)}</p> */}
-        </div>
-
+    <div className={S.pagination_content}>
+      <span className={`${S.button_container} ${S.button_containerPrev}`}>
         <button
           onClick={() => {
-            callback((S) => ({ ...S, pagination: page + 1 }));
+            uncrementPage();
           }}
+          disabled={page < 1}
+          data-hsprev
+        >
+          prev
+        </button>
+      </span>
+
+      <div>
+        <input type="number" defaultValue={page} />
+
+        {/* <p>/ {Math.ceil(data.total_pages)}</p> */}
+      </div>
+      <span className={`${S.button_container} ${S.button_containerPrev}`}>
+        <button
+          onClick={() => {
+            incrementPage();
+          }}
+          data-hsnext
         >
           Next
         </button>
-      </div>
-    </header>
+      </span>
+    </div>
   );
 }

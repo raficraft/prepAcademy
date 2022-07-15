@@ -1,12 +1,14 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { API_KEY } from "../../../config/request";
 import useSWR from "swr";
 import { useRouter } from "next/router";
+import { UIContext } from "../../context/UIProvider/UIProvider";
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
 export function useURL_TMDB(request) {
   const router = useRouter();
+  const { UI } = useContext(UIContext);
 
   const [params, setParams] = useState({
     slug: "tv",
@@ -14,24 +16,23 @@ export function useURL_TMDB(request) {
     language: "FR",
     id: 0,
     router: {},
+    SWR: {},
   });
 
-  const getURL = {
+  const paramsURL = {
     getLanguage() {
-      return `&language=${params.language.toLowerCase()}-${params.language}`;
+      return `&language=${UI.language.toLowerCase()}-${UI.language}`;
     },
-    discover() {
-      return `https://api.themoviedb.org/3/discover/${
-        params.slug
-      }?sort_by=popularity.desc&${API_KEY}${this.getLanguage()}&region=FR&page=${
-        params.pagination
-      }`;
+    discover(slug = params.slug, pagination = params.pagination) {
+      return `https://api.themoviedb.org/3/discover/${slug}?sort_by=popularity.desc&${API_KEY}${this.getLanguage()}&region=FR&page=${pagination}`;
     },
 
-    media() {
-      return `https://api.themoviedb.org/3/${params.slug}/${
-        params.id
-      }?${API_KEY}${this.getLanguage()}`;
+    media(slug = params.slug, id = params.id) {
+      return `https://api.themoviedb.org/3/${slug}/${id}?${API_KEY}${this.getLanguage()}`;
+    },
+
+    setPagination(page) {
+      setParams((S) => ({ ...S, pagination: page }));
     },
   };
 
@@ -61,7 +62,7 @@ export function useURL_TMDB(request) {
     setParams((S) => ({ ...S, router: router }));
   }, [router.query.slug]);
 
-  const SWR = useSWR(getURL[request](), fetcher);
+  const SWR = useSWR(paramsURL[request](), fetcher);
 
-  return [SWR, params, setParams];
+  return [SWR, params, paramsURL];
 }

@@ -2,11 +2,11 @@
 
 .navigation_mobil {
   position: absolute;
-  height: 100%;
-  background-color: rgba(3, 37, 65, 1);
   left: 0;
-  transition: 0.8s;
+  height: 100%;
   padding: 4rem 2rem;
+  background-color: rgba(3, 37, 65, 1);
+  transition: 0.8s;
 
   &[data-show="false"] {
     transition: 0.8s;

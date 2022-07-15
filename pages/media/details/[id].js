@@ -6,7 +6,7 @@ import S from "./details.module.scss";
 import { useURL_TMDB } from "../../../core/hooks/URL_TMDB/useURL_TMDB";
 
 export default function Media_info() {
-  const [SWR, params, setParams] = useURL_TMDB("media");
+  const [SWR, params] = useURL_TMDB("media");
 
   return (
     <>

@@ -43,7 +43,7 @@ export default function List_media({ data, slug }) {
             </div>
             <footer>
               <h4>{el.original_title ? el.title : el.name}</h4>
-              <p
+              <div
                 className={S.details}
                 onClick={(e) => {
                   e.stopPropagation();
@@ -53,7 +53,7 @@ export default function List_media({ data, slug }) {
                 <span className={S.icon_heart}>
                   <Icon_heart />
                 </span>
-              </p>
+              </div>
             </footer>
           </a>
         </Link>

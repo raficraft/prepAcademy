@@ -29,12 +29,9 @@ export default function Header() {
   function createNav() {
     return Object.keys(UI_I18n_nav).map((el, keys) => {
       const items = UI_I18n_nav[el];
-      console.log(items);
       return [];
     });
   }
-
-  console.log("TOTO");
 
   return (
     <>

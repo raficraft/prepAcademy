@@ -8,6 +8,7 @@ export default function UIProvider({ children }) {
     language_select: false,
     search: false,
     nav_mobil: false,
+    pagination_UI: 1,
   });
 
   const callback = {
@@ -23,6 +24,10 @@ export default function UIProvider({ children }) {
     },
     toggleNavMobil() {
       SetUI((S) => ({ ...S, nav_mobil: !UI.nav_mobil }));
+    },
+
+    setPagination(page) {
+      SetUI((S) => ({ ...S, pagination_UI: page }));
     },
   };
 

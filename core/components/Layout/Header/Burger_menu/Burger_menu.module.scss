@@ -1,13 +1,13 @@
 @import "./../../../../sass/function.scss";
 
 .burger_menu {
+  z-index: 30;
   @include flex(column, space-between, center);
   @include size(24px, 21px);
-  content: " ";
-  transition: 0.5s;
-  cursor: pointer;
-  z-index: 30;
   display: none;
+  transition: 0.5s;
+  content: " ";
+  cursor: pointer;
 
   @media screen and (max-width: 700px) {
     @include flex(column, space-between, center);
@@ -15,11 +15,11 @@
 
   .item {
     @include size(100%, 3px);
-    border-radius: 2px;
-    content: " ";
     background-color: white;
+    border-radius: 2px;
     transition: 0.8s;
     transform: translateY(0);
+    content: " ";
     &--middle {
       transition: 0.8s;
       transform: translateX(0);

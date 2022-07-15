@@ -17,6 +17,8 @@
   padding: 0 0 1rem 0;
   background-color: rgb(255, 255, 255);
   border-radius: 8px;
+  border: var(--border);
+  box-shadow: var(--shadow);
 
   .img_container {
     position: relative;

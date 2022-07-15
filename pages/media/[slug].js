@@ -12,12 +12,15 @@ import { UIContext } from "../../core/context/UIProvider/UIProvider";
 
 export default function Media() {
   const [CALL_URL, setCAll_URL] = useState("discover");
-  const [SWR, params, setParams] = useURL_TMDB(CALL_URL);
+  const [SWR, params, paramsURL] = useURL_TMDB(CALL_URL);
   const { UI, callback } = useContext(UIContext);
 
-  console.log("params", params);
-
-  if (SWR.error) return <div>Failed to load</div>;
+  if (SWR.error)
+    return (
+      <div className="error_container">
+        <p className="error_text">Failed to load</p>
+      </div>
+    );
 
   return (
     <>
@@ -28,28 +31,31 @@ export default function Media() {
       </Head>
 
       <section className={S.media_page}>
-        {!SWR.data && !SWR.error ? (
-          <div>Loading ... </div>
-        ) : (
-          <>
-            <header>
-              <h2>{`${UI_I18n_title_pages[params.slug][UI.language]}  ${
-                UI_I18n_title_word[CALL_URL][UI.language]
-              }`}</h2>
-            </header>
-            <div className={S.media_page__content}>
-              <aside>
-                <div className={S.bloc_aside}>
-                  <Pagination
-                    callback={setParams}
-                    page={params.pagination}
-                  ></Pagination>
-                </div>
-              </aside>
-              <List_media data={SWR.data} slug={params.slug}></List_media>
+        <header>
+          <h2>{`${UI_I18n_title_pages[params.slug][UI.language]}  ${
+            UI_I18n_title_word[CALL_URL][UI.language]
+          }`}</h2>
+        </header>
+        <div className={S.media_page__content}>
+          <aside>
+            <div className={S.bloc_aside}>
+              <header>
+                <h3>Navigation</h3>
+              </header>
+              <Pagination
+                callback={paramsURL.setPagination}
+                page={params.pagination}
+              ></Pagination>
             </div>
-          </>
-        )}
+          </aside>
+          {!SWR.data && !SWR.error ? (
+            <div>Loading ... </div>
+          ) : (
+            <>
+              <List_media data={SWR.data} slug={params.slug}></List_media>
+            </>
+          )}
+        </div>
       </section>
     </>
   );
