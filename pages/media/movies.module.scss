@@ -15,6 +15,11 @@
     margin: 4rem 0;
     @include responsiveContainer(100%);
 
+    .aside_container {
+      @include flex(column);
+      gap: 2rem;
+    }
+
     .bloc_aside {
       background-color: rgb(255, 255, 255);
       padding: 1rem;
@@ -24,7 +29,4 @@
       min-width: 260px;
     }
   }
-}
-
-.loading {
 }

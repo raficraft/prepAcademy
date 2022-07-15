@@ -9,6 +9,7 @@ import {
   UI_I18n_title_word,
 } from "../../core/Data/UI_I8n";
 import { UIContext } from "../../core/context/UIProvider/UIProvider";
+import Filter from "../../core/components/Filter/Filter";
 
 export default function Media() {
   const [CALL_URL, setCAll_URL] = useState("discover");
@@ -37,7 +38,7 @@ export default function Media() {
           }`}</h2>
         </header>
         <div className={S.media_page__content}>
-          <aside>
+          <aside className={S.aside_container}>
             <div className={S.bloc_aside}>
               <header>
                 <h3>Navigation</h3>
@@ -46,6 +47,12 @@ export default function Media() {
                 callback={paramsURL.setPagination}
                 page={params.pagination}
               ></Pagination>
+            </div>
+            <div className={S.bloc_aside}>
+              <header>
+                <h3>Navigation</h3>
+              </header>
+              <Filter createURL={paramsURL} />
             </div>
           </aside>
           {!SWR.data ? (
