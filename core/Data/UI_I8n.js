@@ -27,8 +27,15 @@ export const UI_I18n_title_pages = {
     FR: "films",
     EN: "Movies",
   },
-  TV: {
+  tv: {
     FR: "Émissions télévisées",
     EN: "TV show",
+  },
+};
+
+export const UI_I18n_title_word = {
+  discover: {
+    FR: "populaires",
+    EN: "popular",
   },
 };

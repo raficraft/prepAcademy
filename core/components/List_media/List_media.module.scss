@@ -3,6 +3,7 @@
 .list_item {
   gap: 2rem;
   @include flex(row, space-between);
+  flex: 1;
 
   @media screen and (max-width: 500px) {
     @include flex(row, center);

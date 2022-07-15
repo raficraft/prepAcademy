@@ -1,7 +1,23 @@
 @import "./../../core/sass/function.scss";
 
-.movies_pages {
+.media_page {
   @include responsiveContainer(100%);
   @include flex(column);
   padding: 4rem 2rem;
+
+  h2 {
+    text-transform: capitalize;
+  }
+
+  &__content {
+    @include flex(row);
+    gap: 2rem;
+
+    .bloc_aside {
+      background-color: rgb(255, 255, 255);
+      padding: 1rem;
+      border-radius: 8px;
+      border: 1px solid rgb(194, 194, 194);
+    }
+  }
 }

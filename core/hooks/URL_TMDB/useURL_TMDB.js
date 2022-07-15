@@ -13,6 +13,7 @@ export function useURL_TMDB(request) {
     pagination: 1,
     language: "FR",
     id: 0,
+    router: {},
   });
 
   const getURL = {
@@ -57,6 +58,7 @@ export function useURL_TMDB(request) {
 
   useEffect(() => {
     defineParams[request]();
+    setParams((S) => ({ ...S, router: router }));
   }, [router.query.slug]);
 
   const SWR = useSWR(getURL[request](), fetcher);
