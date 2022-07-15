@@ -6,6 +6,7 @@ import { useURL_TMDB } from "../../../core/hooks/URL_TMDB/useURL_TMDB";
 export default function Media_info() {
   const [SWR, params] = useURL_TMDB("media");
 
+  console.log(SWR);
   return (
     <>
       {params.id > 0 && SWR.data ? (

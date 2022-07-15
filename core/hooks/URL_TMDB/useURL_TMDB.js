@@ -11,34 +11,36 @@ export function useURL_TMDB(request) {
   const { UI } = useContext(UIContext);
 
   const [params, setParams] = useState({
-    slug: "tv",
+    slug: "tv", // tv or movie
     pagination: 1,
-    language: "FR",
+    language: "FR", // fr or en
     id: 0,
   });
 
   const paramsURL = {
     getLanguage() {
-      return `&language=${UI.language.toLowerCase()}-${UI.language}`;
+      return `language=${UI.language.toLowerCase()}-${UI.language}&region=${
+        UI.language
+      }`;
     },
     discoverASC(slug = params.slug, pagination = params.pagination) {
-      return `https://api.themoviedb.org/3/discover/${slug}?sort_by=popularity.asc&${API_KEY}${this.getLanguage()}&region=FR&page=${pagination}`;
+      return `https://api.themoviedb.org/3/discover/${slug}?sort_by=popularity.asc&${API_KEY}&${this.getLanguage()}&page=${pagination}`;
     },
 
     discoverDESC(slug = params.slug, pagination = params.pagination) {
-      return `https://api.themoviedb.org/3/discover/${slug}?${API_KEY}&sort_by=popularity.desc&${this.getLanguage()}&region=FR&page=${pagination}`;
+      return `https://api.themoviedb.org/3/discover/${slug}?${API_KEY}&sort_by=popularity.desc&${this.getLanguage()}&page=${pagination}`;
     },
 
     discoverByNameASC(slug = params.slug, pagination = params.pagination) {
-      return `https://api.themoviedb.org/3/discover/${slug}?sort_by=original_title.asc&${API_KEY}${this.getLanguage()}&region=FR&page=${pagination}`;
+      return `https://api.themoviedb.org/3/discover/${slug}?sort_by=original_title.asc&${API_KEY}&${this.getLanguage()}&page=${pagination}`;
     },
 
     discoverByNameDESC(slug = params.slug, pagination = params.pagination) {
-      return `https://api.themoviedb.org/3/discover/${slug}?sort_by=original_title.desc&${API_KEY}${this.getLanguage()}&region=FR&page=${pagination}`;
+      return `https://api.themoviedb.org/3/discover/${slug}?sort_by=original_title.desc&${API_KEY}&${this.getLanguage()}&page=${pagination}`;
     },
 
     media(slug = params.slug, id = params.id) {
-      return `https://api.themoviedb.org/3/${slug}/${id}?${API_KEY}${this.getLanguage()}`;
+      return `https://api.themoviedb.org/3/${slug}/${id}?${API_KEY}&${this.getLanguage()}`;
     },
 
     setPagination(page) {
@@ -80,6 +82,7 @@ export function useURL_TMDB(request) {
     defineParams[request]();
   }, [router.query.slug]);
 
+  console.log("in hooks", paramsURL[request]());
   const SWR = useSWR(paramsURL[request](), fetcher);
 
   return [SWR, params, paramsURL];

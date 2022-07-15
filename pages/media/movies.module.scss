@@ -15,9 +15,18 @@
     margin: 4rem 0;
     @include responsiveContainer(100%);
 
+    @media screen and (max-width: 960px) {
+      @include flex(column);
+    }
+
     .aside_container {
       @include flex(column);
       gap: 2rem;
+
+      @media screen and (max-width: 960px) {
+        @include responsiveContainer(100%);
+        @include flex(column-reverse);
+      }
     }
 
     .bloc_aside {
@@ -27,6 +36,9 @@
       border: var(--border);
       box-shadow: var(--shadow);
       min-width: 260px;
+      @media screen and (max-width: 960px) {
+        @include responsiveContainer(100%);
+      }
     }
   }
 }
