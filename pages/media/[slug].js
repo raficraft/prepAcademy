@@ -21,30 +21,6 @@ export default function Media() {
   const { UI, callback } = useContext(UIContext);
   const isTablet = useMediaQuery("(max-width: 960px)");
 
-  const pageRef = useRef(null);
-  const { onTouch } = useTouchEvent(pageRef);
-
-  useEffect(() => {
-    if (
-      onTouch.direction_X === "left" &&
-      onTouch.percent_X > 20 &&
-      onTouch.start === false
-    ) {
-      console.log("goToNext");
-      paramsURL.setPagination(params.pagination + 1);
-      // goToNext();
-    } else if (
-      onTouch.direction_X === "right" &&
-      onTouch.percent_X > 20 &&
-      onTouch.start === false
-    ) {
-      const page = params.pagination;
-      const newPage = page - 1 === 0 ? 1 : page - 1;
-      paramsURL.setPagination(params.pagination + 1);
-      // goToPrev();
-    }
-  }, [onTouch.start]);
-
   if (SWR.error)
     return (
       <div className="error_container">
@@ -60,7 +36,7 @@ export default function Media() {
         <link rel="icon" href="/favicon.png" />
       </Head>
 
-      <div className="wrapper_inside" ref={pageRef}>
+      <div className="wrapper_inside">
         <section className={S.media_page}>
           <header>
             <h2>{`${UI_I18n_title_pages[params.slug][UI.language]}  ${

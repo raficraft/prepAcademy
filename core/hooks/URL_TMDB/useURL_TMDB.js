@@ -82,7 +82,7 @@ export function useURL_TMDB(request) {
     defineParams[request]();
   }, [router.query.slug]);
 
-  console.log("in hooks", paramsURL[request]());
+  // console.log("in hooks", paramsURL[request]());
   const SWR = useSWR(paramsURL[request](), fetcher);
 
   return [SWR, params, paramsURL];

@@ -14,7 +14,7 @@ export default function List_media({ data, slug }) {
   });
 
   function createItems() {
-    console.log(data);
+    // console.log(data);
     return data.results.map((el, key) => {
       return (
         <Link

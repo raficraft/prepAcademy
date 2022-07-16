@@ -9,6 +9,7 @@ export default function useTouchEvent(ref) {
     start: false,
     start_X: 0,
     start_Y: 0,
+    move: false,
     move_X: 0,
     move_Y: 0,
     translate_X: 0,
@@ -75,6 +76,7 @@ export default function useTouchEvent(ref) {
 
   const handleStart = (e) => {
     // Exclude element in the touch zone area contains data-touch="false"
+
     if (e.target.dataset.touch && e.target.dataset.touch === "false") {
       return;
     }
