@@ -11,7 +11,7 @@ export default function Filter({ CALL_URL }) {
   return (
     <div className={S.filter_container}>
       <div className={S.bloc_input}>
-        <label htmlFor="discoverDESC">
+        <label htmlFor="discoverDESC" tabIndex="1">
           Popularité +/-
           <input
             type="radio"
@@ -26,7 +26,7 @@ export default function Filter({ CALL_URL }) {
       </div>
 
       <div className={S.bloc_input}>
-        <label htmlFor="discoverASC">
+        <label htmlFor="discoverASC" tabIndex="2">
           Popularité - /+
           <input
             type="radio"
@@ -39,7 +39,7 @@ export default function Filter({ CALL_URL }) {
         </label>
       </div>
       <div className={S.bloc_input}>
-        <label htmlFor="discoverByNameASC">
+        <label htmlFor="discoverByNameASC" tabIndex="3">
           {" "}
           Titres (de A-Z)
           <input
@@ -53,7 +53,7 @@ export default function Filter({ CALL_URL }) {
         </label>
       </div>
       <div className={S.bloc_input}>
-        <label htmlFor="discoverByNameDESC">
+        <label htmlFor="discoverByNameDESC" tabIndex="4">
           {" "}
           Titres (de Z-A)
           <input
