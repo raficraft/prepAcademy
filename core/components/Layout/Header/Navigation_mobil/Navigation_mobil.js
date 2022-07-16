@@ -42,7 +42,6 @@ export default function Navigation_mobil() {
         className={S.navigation_mobil}
         data-show={UI.nav_mobil}
         style={{ top: topPosition }}
-        ref={refTOTO}
       >
         <nav>{createNav()}</nav>
       </aside>
