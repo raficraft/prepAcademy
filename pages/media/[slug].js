@@ -65,18 +65,18 @@ export default function Media() {
           </header>
           <div className={S.media_page__content}>
             <aside className={S.aside_container}>
-              <div className={S.bloc_aside}>
-                {!isTablet && (
+              {!isTablet && (
+                <div className={S.bloc_aside}>
                   <header>
                     <h3>Navigation</h3>
                   </header>
-                )}
-                <Pagination
-                  callback={paramsURL.setPagination}
-                  page={params.pagination}
-                  style={isTablet ? "pagination_mobil" : "pagination_desktop"}
-                ></Pagination>
-              </div>
+                  <Pagination
+                    callback={paramsURL.setPagination}
+                    page={params.pagination}
+                    style={isTablet ? "pagination_mobil" : "pagination_desktop"}
+                  ></Pagination>
+                </div>
+              )}
               <div className={S.bloc_aside}>
                 <header>
                   <h3>{UI_I18n_title_word.filter[UI.language]}</h3>
@@ -98,15 +98,6 @@ export default function Media() {
                   <List_media data={SWR.data} slug={params.slug}></List_media>
                 )}
               </>
-            )}
-            {isTablet && (
-              <div className={S.bloc_aside}>
-                <Pagination
-                  callback={paramsURL.setPagination}
-                  page={params.pagination}
-                  style={isTablet ? "pagination_mobil" : "pagination_desktop"}
-                ></Pagination>
-              </div>
             )}
           </div>
         </section>

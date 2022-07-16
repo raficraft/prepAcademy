@@ -36,7 +36,7 @@ export default function Navigation_mobil() {
     }
   }, []);
   return (
-    <Portal selector="#__next">
+    <Portal selector="#__body">
       <aside
         className={S.navigation_mobil}
         data-show={UI.nav_mobil}
