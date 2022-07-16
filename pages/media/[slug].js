@@ -31,14 +31,16 @@ export default function Media() {
       onTouch.percent_X > 20 &&
       onTouch.start === false
     ) {
-      const newPage = params.pagination + 1 > 500 ? 1 : params.pagination + 1;
+      const newPage =
+        params.pagination + 1 > params.maxPage ? 1 : params.pagination + 1;
       paramsURL.setPagination(newPage);
     } else if (
       onTouch.direction_X === "right" &&
       onTouch.percent_X > 20 &&
       onTouch.start === false
     ) {
-      const newPage = params.pagination - 1 === 0 ? 500 : params.pagination - 1;
+      const newPage =
+        params.pagination - 1 === 0 ? params.maxPage : params.pagination - 1;
       paramsURL.setPagination(newPage);
     }
   }, [onTouch.end]);
@@ -90,7 +92,9 @@ export default function Media() {
                 </DropList>
               </div>
               {isTablet && (
-                <p>Swipe to scroll pages {params.pagination} / 500</p>
+                <p>
+                  Swipe to scroll pages {params.pagination} / {params.maxPage}
+                </p>
               )}
             </aside>
             {!SWR.data ? (

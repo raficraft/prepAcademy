@@ -14,6 +14,7 @@ export function useURL_TMDB(request) {
     slug: "tv", // tv or movie
     pagination: 1,
     language: "FR", // fr or en
+    maxPage: 500,
     id: 0,
   });
 
