@@ -1,8 +1,9 @@
 import Link from "next/link";
-import React, { useContext, useLayoutEffect, useState } from "react";
-import { createPortal } from "react-dom";
+import React, { useContext, useEffect, useLayoutEffect, useState } from "react";
+
 import { UIContext } from "../../../../context/UIProvider/UIProvider";
 import { UI_I18n_nav } from "../../../../Data/UI_I8n";
+
 import Portal from "../../../../utils/Portal";
 import S from "./Navigation.module.scss";
 
@@ -41,6 +42,7 @@ export default function Navigation_mobil() {
         className={S.navigation_mobil}
         data-show={UI.nav_mobil}
         style={{ top: topPosition }}
+        ref={refTOTO}
       >
         <nav>{createNav()}</nav>
       </aside>
