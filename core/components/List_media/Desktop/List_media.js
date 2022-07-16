@@ -1,10 +1,11 @@
 import Link from "next/link";
 import Image from "next/image";
 import React, { useLayoutEffect, useState } from "react";
-import { IMG_URL } from "../../../config/request";
-import { Icon_heart } from "../../assets/SVG/UI_icon";
-import RadialChart from "../RadialChart/RadialChart";
+
+import RadialChart from "../../RadialChart/RadialChart";
 import S from "./List_media.module.scss";
+import { IMG_URL } from "../../../../config/request";
+import { Icon_heart } from "../../../assets/SVG/UI_icon";
 
 export default function List_media({ data, slug }) {
   const [size_img, setSize_img] = useState({
