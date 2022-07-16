@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Image from "next/Image";
+import Image from "next/image";
 import React, { useLayoutEffect, useState } from "react";
 import { IMG_URL } from "../../../../config/request";
 import S from "./List_media_tablet.module.scss";
