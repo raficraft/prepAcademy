@@ -12,6 +12,7 @@ import { UIContext } from "../../core/context/UIProvider/UIProvider";
 import Filter from "../../core/components/Filter/Filter";
 import useMediaQuery from "../../core/hooks/mediaQueries/useMediaQueries";
 import List_media from "../../core/components/List_media/Desktop/List_media";
+import List_media_tablet from "../../core/components/List_media/Tablet/List_media_tablet";
 
 export default function Media() {
   const [CALL_URL, setCAll_URL] = useState("discoverDESC");
@@ -42,37 +43,32 @@ export default function Media() {
             }`}</h2>
           </header>
           <div className={S.media_page__content}>
-            {isTablet ? (
-              <div>
-                <h1>Tablet ELement</h1>
+            <aside className={S.aside_container}>
+              <div className={S.bloc_aside}>
+                <header>
+                  <h3>Navigation</h3>
+                </header>
+                <Pagination
+                  callback={paramsURL.setPagination}
+                  page={params.pagination}
+                ></Pagination>
               </div>
+              <div className={S.bloc_aside}>
+                <header>
+                  <h3>{UI_I18n_title_word.filter[UI.language]}</h3>
+                </header>
+                <Filter CALL_URL={setCAll_URL} />
+              </div>
+            </aside>
+            {!SWR.data ? (
+              <div className="loading">Loading ... </div>
             ) : (
               <>
-                {" "}
-                <aside className={S.aside_container}>
-                  <div className={S.bloc_aside}>
-                    <header>
-                      <h3>Navigation</h3>
-                    </header>
-                    <Pagination
-                      callback={paramsURL.setPagination}
-                      page={params.pagination}
-                    ></Pagination>
-                  </div>
-                  <div className={S.bloc_aside}>
-                    <header>
-                      <h3>{UI_I18n_title_word.filter[UI.language]}</h3>
-                    </header>
-                    <Filter CALL_URL={setCAll_URL} />
-                  </div>
-                </aside>
-                {!SWR.data ? (
-                  <div className="loading">Loading ... </div>
+                {isTablet ? (
+                  <List_media_tablet data={SWR.data} slug={params.slug} />
                 ) : (
-                  <>
-                    <List_media data={SWR.data} slug={params.slug}></List_media>
-                  </>
-                )}{" "}
+                  <List_media data={SWR.data} slug={params.slug}></List_media>
+                )}
               </>
             )}
           </div>
