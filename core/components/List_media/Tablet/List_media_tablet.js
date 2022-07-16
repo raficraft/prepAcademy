@@ -12,6 +12,8 @@ export default function List_media_tablet({ data, slug }) {
 
   function createItems() {
     console.log(data);
+    console.log("toto");
+    console.log("!!!!", data.total_pages);
     return data.results.map((el, key) => {
       return (
         <Link

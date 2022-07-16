@@ -21,11 +21,16 @@
 
     .aside_container {
       @include flex(column);
-      gap: 2rem;
+      gap: 1rem;
 
       @media screen and (max-width: 960px) {
         @include responsiveContainer(100%);
-        @include flex(column-reverse);
+        @include flex(column);
+      }
+
+      p {
+        color: grey;
+        margin: auto;
       }
     }
 

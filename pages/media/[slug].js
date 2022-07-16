@@ -14,6 +14,7 @@ import useMediaQuery from "../../core/hooks/mediaQueries/useMediaQueries";
 import List_media from "../../core/components/List_media/Desktop/List_media";
 import List_media_tablet from "../../core/components/List_media/Tablet/List_media_tablet";
 import useTouchEvent from "../../core/hooks/touchEvent/useTouchEvent";
+import DropList from "../../core/components/DropList/DropList";
 
 export default function Media() {
   const [CALL_URL, setCAll_URL] = useState("discoverDESC");
@@ -30,13 +31,14 @@ export default function Media() {
       onTouch.percent_X > 20 &&
       onTouch.start === false
     ) {
-      paramsURL.setPagination(params.pagination + 1);
+      const newPage = params.pagination + 1 > 500 ? 1 : params.pagination + 1;
+      paramsURL.setPagination(newPage);
     } else if (
       onTouch.direction_X === "right" &&
       onTouch.percent_X > 20 &&
       onTouch.start === false
     ) {
-      const newPage = params.pagination - 1 === 0 ? 1 : params.pagination - 1;
+      const newPage = params.pagination - 1 === 0 ? 500 : params.pagination - 1;
       paramsURL.setPagination(newPage);
     }
   }, [onTouch.end]);
@@ -66,27 +68,30 @@ export default function Media() {
           <div className={S.media_page__content}>
             <aside className={S.aside_container}>
               {!isTablet && (
-                <div className={S.bloc_aside}>
-                  <header>
-                    <h3>Navigation</h3>
-                  </header>
-                  <Pagination
-                    callback={paramsURL.setPagination}
-                    page={params.pagination}
-                    style={isTablet ? "pagination_mobil" : "pagination_desktop"}
-                  ></Pagination>
-                </div>
+                <>
+                  <div className={S.bloc_aside}>
+                    <header>
+                      <h3>Navigation</h3>
+                    </header>
+                    <Pagination
+                      callback={paramsURL.setPagination}
+                      page={params.pagination}
+                      style={
+                        isTablet ? "pagination_mobil" : "pagination_desktop"
+                      }
+                    ></Pagination>
+                  </div>
+                </>
               )}
+
               <div className={S.bloc_aside}>
-                <header>
-                  <h3>{UI_I18n_title_word.filter[UI.language]}</h3>
-                </header>
-                {isTablet ? (
-                  <div>Filter tablet</div>
-                ) : (
+                <DropList title={UI_I18n_title_word.filter[UI.language]}>
                   <Filter CALL_URL={setCAll_URL} />
-                )}
+                </DropList>
               </div>
+              {isTablet && (
+                <p>Swipe to scroll pages {params.pagination} / 500</p>
+              )}
             </aside>
             {!SWR.data ? (
               <div className="loading">Loading ... </div>

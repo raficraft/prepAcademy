@@ -1,0 +1,30 @@
+@import "./../../sass/function.scss";
+
+.dropList_container {
+  @include responsiveContainer(100%);
+  overflow: hidden;
+  height: auto;
+
+  header {
+    @include flex(row, space-between, center);
+    cursor: pointer;
+    border-bottom: solid rgba(227, 227, 227, 0);
+  }
+
+  .container_SVG {
+    transition: 0.1s;
+    @include flexCenter();
+  }
+
+  &[data-isopen="true"] {
+    header {
+      border-bottom: 1px solid rgba(227, 227, 227, 1);
+      padding: 0 0 0.5rem 0;
+      transition: 0.5s;
+    }
+    .container_SVG {
+      transition: 0.1s;
+      transform: rotate(90deg);
+    }
+  }
+}
