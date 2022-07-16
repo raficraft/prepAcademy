@@ -5,7 +5,7 @@ $size-arrow: 20%;
 $rotate-arrow: 45deg;
 $rotate-arrow2: -45deg;
 
-.pagination_desktop {
+.pagination_content {
   @include flex(row, space-between);
   @include responsiveContainer(100%);
   width: 80%;
@@ -14,9 +14,7 @@ $rotate-arrow2: -45deg;
 
 .button_container {
   height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @include flexCenter();
   width: 3rem;
 
   .button {
@@ -29,10 +27,7 @@ $rotate-arrow2: -45deg;
     background-color: white;
     border-radius: 50%;
     z-index: 100;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    align-content: center;
+    @include flexCenter();
     cursor: pointer;
     border: 2px solid rgb(191, 191, 191);
     box-shadow: 2px 2px 2px 1px rgba(61, 61, 61, 0.2);
@@ -52,10 +47,7 @@ $rotate-arrow2: -45deg;
     background-color: white;
     border-radius: 50%;
     z-index: 100;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    align-content: center;
+    @include flexCenter();
     cursor: pointer;
     border: 2px solid rgb(191, 191, 191);
     box-shadow: 2px 2px 2px 1px rgba(61, 61, 61, 0.2);
@@ -69,12 +61,10 @@ $rotate-arrow2: -45deg;
   }
 
   [data-next] {
-    right: 1rem;
     box-shadow: 2px 2px 2px 1px rgba(61, 61, 61, 0.2);
   }
 
   [data-prev] {
-    left: 1rem;
     box-shadow: 2px 2px 2px 1px rgba(61, 61, 61, 0.2);
   }
 
@@ -135,11 +125,4 @@ $rotate-arrow2: -45deg;
   [data-next]:hover {
     transform: scale(1.2);
   }
-}
-
-.pagination_mobil {
-  @include flex(row, space-between);
-  @include responsiveContainer(100%);
-  width: 100%;
-  margin: 1rem auto;
 }
