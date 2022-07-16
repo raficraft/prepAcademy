@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { debounce } from "../../../utils/debounce";
 import S from "./Pagination.module.scss";
 
-export default function Pagination({ callback, page }) {
+export default function Pagination({ callback, page, style }) {
   const [pagination, setPagination] = useState(page);
 
   function incrementPage() {
@@ -17,6 +17,54 @@ export default function Pagination({ callback, page }) {
     setPagination(newPage);
   }
 
+  function circleBtn() {
+    return (
+      <>
+        <span className={`${S.button_container} ${S.button_containerPrev}`}>
+          <button
+            onClick={() => {
+              uncrementPage();
+            }}
+            disabled={page < 1}
+            data-prev
+          ></button>
+        </span>
+
+        <span className={`${S.button_container} ${S.button_containerPrev}`}>
+          <button
+            onClick={() => {
+              incrementPage();
+            }}
+            data-next
+          ></button>
+        </span>
+      </>
+    );
+  }
+
+  function stdBtn() {
+    return (
+      <>
+        <button
+          onClick={() => {
+            uncrementPage();
+          }}
+          disabled={page < 1}
+        >
+          Prev
+        </button>
+
+        <button
+          onClick={() => {
+            incrementPage();
+          }}
+        >
+          Next
+        </button>
+      </>
+    );
+  }
+
   useEffect(() => {
     const restoreScrollBar = () => {
       let bodyElt = document.body;
@@ -26,25 +74,8 @@ export default function Pagination({ callback, page }) {
     restoreScrollBar();
   }, [page]);
   return (
-    <div className={S.pagination_content}>
-      <span className={`${S.button_container} ${S.button_containerPrev}`}>
-        <button
-          onClick={() => {
-            uncrementPage();
-          }}
-          disabled={page < 1}
-          data-prev
-        ></button>
-      </span>
-
-      <span className={`${S.button_container} ${S.button_containerPrev}`}>
-        <button
-          onClick={() => {
-            incrementPage();
-          }}
-          data-next
-        ></button>
-      </span>
+    <div className={S[style]}>
+      {style === "pagination_desktop" ? circleBtn() : stdBtn()}
     </div>
   );
 }

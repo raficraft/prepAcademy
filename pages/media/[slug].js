@@ -21,6 +21,26 @@ export default function Media() {
   const { UI, callback } = useContext(UIContext);
   const isTablet = useMediaQuery("(max-width: 960px)");
 
+  const pageRef = useRef();
+  const { onTouch } = useTouchEvent(pageRef);
+
+  useEffect(() => {
+    if (
+      onTouch.direction_X === "left" &&
+      onTouch.percent_X > 20 &&
+      onTouch.start === false
+    ) {
+      paramsURL.setPagination(params.pagination + 1);
+    } else if (
+      onTouch.direction_X === "right" &&
+      onTouch.percent_X > 20 &&
+      onTouch.start === false
+    ) {
+      const newPage = params.pagination - 1 === 0 ? 1 : params.pagination - 1;
+      paramsURL.setPagination(newPage);
+    }
+  }, [onTouch.end]);
+
   if (SWR.error)
     return (
       <div className="error_container">
@@ -36,7 +56,7 @@ export default function Media() {
         <link rel="icon" href="/favicon.png" />
       </Head>
 
-      <div className="wrapper_inside">
+      <div className="wrapper_inside" ref={pageRef}>
         <section className={S.media_page}>
           <header>
             <h2>{`${UI_I18n_title_pages[params.slug][UI.language]}  ${
@@ -45,17 +65,18 @@ export default function Media() {
           </header>
           <div className={S.media_page__content}>
             <aside className={S.aside_container}>
-              {!isTablet && (
-                <div className={S.bloc_aside}>
+              <div className={S.bloc_aside}>
+                {!isTablet && (
                   <header>
                     <h3>Navigation</h3>
                   </header>
-                  <Pagination
-                    callback={paramsURL.setPagination}
-                    page={params.pagination}
-                  ></Pagination>
-                </div>
-              )}
+                )}
+                <Pagination
+                  callback={paramsURL.setPagination}
+                  page={params.pagination}
+                  style={isTablet ? "pagination_mobil" : "pagination_desktop"}
+                ></Pagination>
+              </div>
               <div className={S.bloc_aside}>
                 <header>
                   <h3>{UI_I18n_title_word.filter[UI.language]}</h3>
@@ -77,6 +98,15 @@ export default function Media() {
                   <List_media data={SWR.data} slug={params.slug}></List_media>
                 )}
               </>
+            )}
+            {isTablet && (
+              <div className={S.bloc_aside}>
+                <Pagination
+                  callback={paramsURL.setPagination}
+                  page={params.pagination}
+                  style={isTablet ? "pagination_mobil" : "pagination_desktop"}
+                ></Pagination>
+              </div>
             )}
           </div>
         </section>

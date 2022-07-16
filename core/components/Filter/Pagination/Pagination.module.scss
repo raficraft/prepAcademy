@@ -5,7 +5,7 @@ $size-arrow: 20%;
 $rotate-arrow: 45deg;
 $rotate-arrow2: -45deg;
 
-.pagination_content {
+.pagination_desktop {
   @include flex(row, space-between);
   @include responsiveContainer(100%);
   width: 80%;
@@ -19,19 +19,10 @@ $rotate-arrow2: -45deg;
   align-items: center;
   width: 3rem;
 
-  &Prev {
-    left: 10px;
-  }
-  &Next {
-    right: 10px;
-  }
-
   .button {
     $size: 3rem;
     border-radius: 50%;
     transition: 0.5s;
-
-    position: fixed;
     content: "";
     width: $size-arrowrapper;
     height: $size-arrowrapper;
@@ -144,4 +135,11 @@ $rotate-arrow2: -45deg;
   [data-next]:hover {
     transform: scale(1.2);
   }
+}
+
+.pagination_mobil {
+  @include flex(row, space-between);
+  @include responsiveContainer(100%);
+  width: 100%;
+  margin: 1rem auto;
 }

@@ -20,6 +20,7 @@ export default function useTouchEvent(ref) {
     percent_PageY: 0,
     direction_X: "Stand by",
     direction_Y: "Stand by",
+    end: false,
   });
 
   /////////////////////////////////////
@@ -82,8 +83,6 @@ export default function useTouchEvent(ref) {
     }
 
     if (ref.current && ref.current.contains(e.target)) {
-      e.preventDefault();
-      e.stopPropagation();
       e = getPointer(e);
 
       setOnTouch((S) => ({
@@ -99,6 +98,7 @@ export default function useTouchEvent(ref) {
         percent_Y: 0,
         percent_PageX: 0,
         percent_PageY: 0,
+        end: false,
       }));
     }
   };
@@ -110,6 +110,7 @@ export default function useTouchEvent(ref) {
       setOnTouch((S) => ({
         ...S,
         start: false,
+        end: true,
       }));
     }
   };
