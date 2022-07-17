@@ -20,6 +20,7 @@ import {
   Icon_star,
   Icon_thumbnails_list,
 } from "../../../core/assets/SVG/UI_icon";
+import useMediaQuery from "../../../core/hooks/mediaQueries/useMediaQueries";
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
@@ -27,15 +28,17 @@ export default function Media_info() {
   const { UI, callback } = useContext(UIContext);
   const [params, paramsURL] = useURL_TMDB("media");
   const SWR = useSWR(paramsURL[`media`](), fetcher);
-
-  const [params_credits, paramsURL_credits] = useURL_TMDB("credits");
-  const SWR_credits = useSWR(paramsURL[`credits`](), fetcher);
+  const isTablet = useMediaQuery("(max-width: 960px)");
 
   function convertRunTime(time) {
     console.log(UI);
-    const hours = Math.floor(time / 60);
-    const min = time % 60;
-    return `${hours}h ${min}min`;
+    if (time < 60) {
+      return `${time}m`;
+    } else {
+      const hours = Math.floor(time / 60);
+      const min = time % 60;
+      return `${hours}h ${min}m`;
+    }
   }
 
   function getReleaseYear(release_date) {
@@ -44,9 +47,13 @@ export default function Media_info() {
 
   function genreList(arrayGenre) {
     return arrayGenre.map((el, key) => {
+      const endLine = key < arrayGenre.length - 1 ? "," : "";
       return (
         <Link href="/">
-          <a>{el.name}</a>
+          <a className={S.genre_link}>
+            {el.name}
+            {endLine}
+          </a>
         </Link>
       );
     });
@@ -79,131 +86,231 @@ export default function Media_info() {
   return (
     <>
       {params.id > 0 && SWR.data ? (
-        <section className={S.banner}>
-          <div className={S.banner_content__img} id="banner_img">
-            {SWR.data.backdrop_path !== null ? (
-              <Image
-                objectFit="cover"
-                src={`${IMG_URL_original}${SWR.data.backdrop_path}`}
-                alt={SWR.data.original_title ? SWR.data.title : SWR.data.name}
-                width={1980}
-                height={800}
-              />
-            ) : (
-              <div className={S.backdrop_fail}>
-                <h2>No</h2>
-                <h2>image</h2>
-                <h2>available</h2>
+        <>
+          <section className={S.banner}>
+            {
+              /////////////////////////////////////////////////
+              // Banner image
+              // Banner content - absolute position
+              ////////////////////////////////////////////////
+            }
+
+            {!isTablet && (
+              <div className={S.banner_content__img} id="banner_img">
+                {SWR.data.backdrop_path !== null ? (
+                  <img
+                    src={`${IMG_URL_original}${SWR.data.backdrop_path}`}
+                    alt={
+                      SWR.data.original_title ? SWR.data.title : SWR.data.name
+                    }
+                  />
+                ) : (
+                  <div className={S.backdrop_fail}>
+                    <h2>No</h2>
+                    <h2>image</h2>
+                    <h2>available</h2>
+                  </div>
+                )}
               </div>
             )}
-          </div>
-          <div className={S.banner_inside}>
-            <div className={S.banner_inside_img}>
-              {/* <img src={`${IMG_URL_300}${SWR.data.poster_path}`} /> */}
-              <Image
-                objectFit="cover"
-                src={`${IMG_URL_300}${SWR.data.poster_path}`}
-                alt={SWR.data.original_title ? SWR.data.title : SWR.data.name}
-                width={300}
-                height={450}
-              />
-            </div>
-            <div className={S.banner_inside_content}>
-              {
-                /////////////////////////////////////////////////
-                // Header
-                // title - release_date - genres
-                ////////////////////////////////////////////////
-              }
 
-              <header className={S.banner_header}>
-                <span>
-                  <Link href="/">
-                    <a>{SWR.data.title}</a>
-                  </Link>
-                  {
-                    <span className={S.title_date}>
-                      `(${getReleaseYear(SWR.data.release_date)})`
-                    </span>
-                  }
-                </span>
-                <div className={S.facts_details}>
-                  <p className={S.release_date}>
-                    {manageDate(SWR.data.release_date)}
-                  </p>
-
-                  <span className={S.genre}>{genreList(SWR.data.genres)}</span>
-                  <p>{convertRunTime(SWR.data.runtime)}</p>
-                </div>
-              </header>
-
-              {
-                /////////////////////////////////////////////////
-                // Div
-                // Radial chart - tooltip - trailer => modal
-                ////////////////////////////////////////////////
-              }
-
-              <div>
-                <span className={S.radial_container}>
-                  <RadialChart
-                    score={SWR.data.vote_average * 10}
-                    min={0}
-                    max={100}
-                    lineWidth={4}
-                    size={60}
-                    padding={4}
+            <div className={S.banner_inside}>
+              {!isTablet ? (
+                <div className={S.banner_inside_img}>
+                  <img
+                    src={`${IMG_URL_300}${SWR.data.poster_path}`}
+                    alt={
+                      SWR.data.original_title ? SWR.data.title : SWR.data.name
+                    }
                   />
-                  <span>
-                    <p
-                      dangerouslySetInnerHTML={{
-                        __html: UI_I18n_media_details.userNote[UI.language],
-                      }}
-                    ></p>
-                  </span>
-                </span>
-                <div className={S.tooltip_list}>
-                  <Tooltip
-                    SVG={<Icon_thumbnails_list />}
-                    hover_text={"Ajouter à une liste"}
-                  ></Tooltip>
-
-                  <Tooltip
-                    SVG={<Icon_heart />}
-                    hover_text={"Ajouter à une liste"}
-                  ></Tooltip>
-
-                  <Tooltip
-                    SVG={<Icon_bookmark />}
-                    hover_text={"Ajouter à une liste"}
-                  ></Tooltip>
-
-                  <Tooltip
-                    SVG={<Icon_star />}
-                    hover_text={"Ajouter à une liste"}
-                  ></Tooltip>
                 </div>
-                <span>
-                  <p>
-                    <Icon_play /> Bande-annonce
-                  </p>
-                </span>
-              </div>
+              ) : (
+                <div className={S.banner_img__mobil}>
+                  <img
+                    src={`${IMG_URL_original}${SWR.data.backdrop_path}`}
+                    alt={
+                      SWR.data.original_title ? SWR.data.title : SWR.data.name
+                    }
+                  />
 
-              {
-                /////////////////////////////////////////////////
-                // Div
-                // tagline - synopsis
-                ////////////////////////////////////////////////
-              }
+                  <div className={S.banner_poster_wrapper}>
+                    <div className={S.banner_poster__mobil}>
+                      <img
+                        src={`${IMG_URL_300}${SWR.data.poster_path}`}
+                        alt={
+                          SWR.data.original_title
+                            ? SWR.data.title
+                            : SWR.data.name
+                        }
+                      />
+                    </div>
+                  </div>
+                </div>
+              )}
 
-              <div>
-                {SWR.data.tagline && <p>{SWR.data.tagline}</p>}
-                {SWR.data.overview && <p>{SWR.data.overview}</p>}
+              <div className={S.banner_inside_content}>
+                {
+                  /////////////////////////////////////////////////
+                  // Header
+                  // title - release_date - genres
+                  ////////////////////////////////////////////////
+                }
+
+                <header className={S.banner_header}>
+                  <div className={S.title_content}>
+                    <Link href="/">
+                      <a className={S.title_link}>
+                        {params.slug === "movie"
+                          ? SWR.data.title
+                          : SWR.data.name}
+                      </a>
+                    </Link>
+                    {
+                      <span className={S.title_date}>
+                        {" "}
+                        (
+                        {getReleaseYear(
+                          params.slug === "movie"
+                            ? SWR.data.release_date
+                            : SWR.data.first_air_date
+                        )}
+                        )
+                      </span>
+                    }
+                  </div>
+
+                  {isTablet && (
+                    <div className={S.radial_tablet}>
+                      <div className={S.radial_container}>
+                        <RadialChart
+                          score={SWR.data.vote_average * 10}
+                          min={0}
+                          max={100}
+                          lineWidth={2}
+                          size={44}
+                          padding={4}
+                        />
+                        <span className={S.radial_label}>
+                          <p
+                            className="bold"
+                            dangerouslySetInnerHTML={{
+                              __html:
+                                UI_I18n_media_details.userNote_mobil[
+                                  UI.language
+                                ],
+                            }}
+                          ></p>
+                        </span>
+                      </div>
+
+                      <span className={S.hr_vertical}></span>
+
+                      <span className={S.trailer}>
+                        <p className={S.trailer_text}>
+                          <Icon_play /> Bande-annonce
+                        </p>
+                      </span>
+                    </div>
+                  )}
+
+                  <div className={S.facts_container}>
+                    {!isTablet && (
+                      <span className={S.release_date}>
+                        {manageDate(
+                          params.slug === "movie"
+                            ? SWR.data.release_date
+                            : SWR.data.first_air_date
+                        )}
+                      </span>
+                    )}
+                    <span className={S.genre}>
+                      {genreList(SWR.data.genres)}
+                    </span>
+                    <span className={S.duration}>
+                      {convertRunTime(
+                        params.slug === "movie"
+                          ? SWR.data.runtime
+                          : SWR.data.episode_run_time
+                      )}
+                    </span>
+                  </div>
+                </header>
+
+                {
+                  /////////////////////////////////////////////////
+                  // Div
+                  // Radial chart - tooltip - trailer => modal
+                  ////////////////////////////////////////////////
+                }
+
+                {!isTablet && (
+                  <div className={S.radial_and_tooltip}>
+                    <div className={S.radial_container}>
+                      <RadialChart
+                        score={SWR.data.vote_average * 10}
+                        min={0}
+                        max={100}
+                        lineWidth={4}
+                        size={60}
+                        padding={4}
+                      />
+                      <span className={S.radial_label}>
+                        <p
+                          dangerouslySetInnerHTML={{
+                            __html: UI_I18n_media_details.userNote[UI.language],
+                          }}
+                        ></p>
+                      </span>
+                    </div>
+
+                    <div className={S.tooltip_list}>
+                      <Tooltip
+                        SVG={<Icon_thumbnails_list />}
+                        hover_text={"Ajouter à une liste"}
+                      ></Tooltip>
+
+                      <Tooltip
+                        SVG={<Icon_heart />}
+                        hover_text={"Ajouter à une liste"}
+                      ></Tooltip>
+
+                      <Tooltip
+                        SVG={<Icon_bookmark />}
+                        hover_text={"Ajouter à une liste"}
+                      ></Tooltip>
+
+                      <Tooltip
+                        SVG={<Icon_star />}
+                        hover_text={"Ajouter à une liste"}
+                      ></Tooltip>
+                    </div>
+
+                    <span className={S.trailer}>
+                      <p className={S.trailer_text}>
+                        <Icon_play /> Bande-annonce
+                      </p>
+                    </span>
+                  </div>
+                )}
+
+                {
+                  /////////////////////////////////////////////////
+                  // Div
+                  // tagline - synopsis
+                  ////////////////////////////////////////////////
+                }
+
+                <div className={S.synopsis_container}>
+                  {SWR.data.tagline && (
+                    <p className={S.tagline}>{SWR.data.tagline}</p>
+                  )}
+                  <h2>Synopsis</h2>
+                  {SWR.data.overview && <p>{SWR.data.overview}</p>}
+                </div>
               </div>
             </div>
-          </div>
-        </section>
+          </section>
+        </>
       ) : (
         <p>Loading ...</p>
       )}

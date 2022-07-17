@@ -47,6 +47,7 @@ export default function RadialChart({
 
     const colorCircle = colorRef.current;
     const ctx = colorCircle.getContext("2d");
+    ctx.imageSmoothingEnabled;
     //draw background circle
     if (score > 0) {
       setTimeout(() => {
@@ -71,6 +72,7 @@ export default function RadialChart({
   useEffect(() => {
     const canvas = canvasRef.current;
     let ctx = canvas.getContext("2d");
+    ctx.imageSmoothingEnabled;
     drawRadial({
       ctx,
       size,
@@ -92,7 +94,7 @@ export default function RadialChart({
         <canvas width={size} height={size} ref={colorRef}></canvas>
         <input
           type="hidden"
-          value={inputValue}
+          // value={inputValue}
           ref={inputRef}
           min={min}
           max={max}
@@ -100,10 +102,14 @@ export default function RadialChart({
         />
         <input
           type="text"
-          value={score === 0 ? "NR" : `${score}%`}
+          // value={score === 0 ? "NR" : `${score}%`}
           disabled
           style={{ width: `${size}px`, height: `${size}px` }}
         />
+        <p>
+          {score === 0 ? "NR" : `${score}`}
+          <sup>%</sup>
+        </p>
       </div>
       {(children && labelPosition === "bottom") ||
         (children && !labelPosition && children)}

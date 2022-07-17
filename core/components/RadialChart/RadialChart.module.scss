@@ -3,7 +3,6 @@
 .radialContainer {
   @include flex(row);
   height: 50px;
-  margin: 0 0 0 0.75rem;
 
   .radialContent {
     @include flexCenter(column);
@@ -12,9 +11,23 @@
     background-color: rgba(8, 28, 34, 1);
     border-radius: 50%;
 
+    p {
+      color: white;
+      @include flexCenter(row);
+      font-weight: 600;
+      font-size: 100%;
+      font-family: Arial, sans-serif;
+
+      sup {
+        margin-top: 2px;
+        font-size: 8px;
+        font-weight: 200;
+        align-self: flex-start;
+      }
+    }
+
     input {
       position: absolute;
-      font-size: 16px;
       text-align: center;
       font-weight: bold;
       border: none;

@@ -46,7 +46,12 @@ export const UI_I18n_title_word = {
 
 export const UI_I18n_media_details = {
   userNote: {
-    FR: `Note<br>des<br>utilisateur`,
+    FR: `Note<br>des<br>utilisateurs`,
+    EN: `User<br>note`,
+  },
+
+  userNote_mobil: {
+    FR: `Note des<br>utilisateurs`,
     EN: `User<br>note`,
   },
 };

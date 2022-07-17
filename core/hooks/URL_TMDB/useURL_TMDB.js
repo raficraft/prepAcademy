@@ -39,7 +39,9 @@ export function useURL_TMDB(request) {
     },
 
     media(slug = params.slug, id = params.id) {
-      return `https://api.themoviedb.org/3/${slug}/438148-minions-the-rise-of-gru?${API_KEY}&language=${UI.language.toLowerCase()}&append_to_response=videos,release_dates`;
+      return `https://api.themoviedb.org/3/${slug}/${
+        params.id
+      }?${API_KEY}&language=${UI.language.toLowerCase()}&append_to_response=videos,release_dates`;
     },
 
     credits(slug = params.slug, id = params.id) {

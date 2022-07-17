@@ -7,6 +7,7 @@ export const drawRadial = ({
 }) => {
   // default value
 
+  ctx.imageSmoothingEnabled;
   ctx.clearRect(0, 0, size, size);
   ctx.beginPath();
   ctx.arc(size / 2, size / 2, size / 2 - padding, 0, 2 * Math.PI);
@@ -26,6 +27,7 @@ export const drawCircle = ({
   padding = 0,
   ratio,
 }) => {
+  ctx.imageSmoothingEnabled;
   ctx.clearRect(0, 0, size, size);
   ctx.beginPath();
   //Full Circle ctx.arc(100, 100, 85, -(1 / 2) * Math.PI, 3/2 Math.PI);

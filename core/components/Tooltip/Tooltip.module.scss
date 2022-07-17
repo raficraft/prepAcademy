@@ -1,10 +1,10 @@
 @import "./../../sass/function.scss";
 
 .tooltip {
-  background-color: red;
   position: relative;
   @include flexCenter();
-  @include size(45px);
+  @include size(46px, 52px);
+  cursor: pointer;
   &_container {
     background-color: rgba(3, 37, 65, 1);
     border-radius: 50%;

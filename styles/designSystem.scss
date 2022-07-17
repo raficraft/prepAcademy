@@ -9,6 +9,9 @@ body {
 
 body {
   font-family: "Source Sans Pro", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  font-size: 1rem;
+  list-style: 1;
 }
 
 :root {
@@ -77,7 +80,7 @@ button {
 
 .wrapper {
   @include responsiveContainer(100%);
-  @include flexCenter();
+  @include flexCenter(column);
   &_inside {
     @include responsiveContainer(1440px);
   }
