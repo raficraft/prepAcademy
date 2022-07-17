@@ -39,7 +39,14 @@ export function useURL_TMDB(request) {
     },
 
     media(slug = params.slug, id = params.id) {
-      return `https://api.themoviedb.org/3/${slug}/${id}?${API_KEY}&${this.getLanguage()}`;
+      return `https://api.themoviedb.org/3/${slug}/438148-minions-the-rise-of-gru?${API_KEY}&language=${UI.language.toLowerCase()}&append_to_response=videos,release_dates`;
+    },
+
+    credits(slug = params.slug, id = params.id) {
+      return `
+      https://api.themoviedb.org/3/${slug}/${
+        params.id
+      }/credits?${API_KEY}&language=${UI.language.toLowerCase()}`;
     },
 
     setPagination(page) {
@@ -68,6 +75,16 @@ export function useURL_TMDB(request) {
     },
 
     media() {
+      const pathArray = window.location.pathname.split("/");
+      const params = pathArray[pathArray.length - 1].split("_");
+      setParams((S) => ({
+        ...S,
+        slug: params[0],
+        id: params[1],
+      }));
+    },
+
+    credits() {
       const pathArray = window.location.pathname.split("/");
       const params = pathArray[pathArray.length - 1].split("_");
       setParams((S) => ({

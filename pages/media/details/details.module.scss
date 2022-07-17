@@ -2,6 +2,7 @@
 
 .banner {
   @include responsiveContainer(100%);
+  position: relative;
 }
 
 .banner_content__img {
@@ -47,5 +48,28 @@
       @include fullAbsolute();
       background-color: rgba(182, 182, 182, 0.4);
     }
+  }
+}
+
+.banner_inside {
+  position: absolute;
+  @include fullAbsolute();
+  @include responsiveContainer(var(--layout_width));
+  margin: auto;
+  @include flex(row, flex-start, center);
+  gap: 2rem;
+  max-height: 80%;
+  padding: 0 3rem;
+
+  &_img {
+    img {
+      border-radius: 10px;
+    }
+  }
+
+  &_content {
+    @include flex(column);
+    align-self: stretch;
+    flex: 1;
   }
 }

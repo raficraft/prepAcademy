@@ -49,7 +49,7 @@ export let Pagination_input = ({ request, currentPage, ref, callback }) => {
             onChange={controlCapture}
             pattern="^[0-9]*$"
           />
-          <p class="bold">/ {params.maxPage}</p>
+          <p className="bold">/ {params.maxPage}</p>
         </span>
       </div>
       {error && (

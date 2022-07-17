@@ -1,0 +1,18 @@
+@import "./../../sass/function.scss";
+
+.tooltip {
+  background-color: red;
+  position: relative;
+  @include flexCenter();
+  @include size(45px);
+  &_container {
+    background-color: rgba(3, 37, 65, 1);
+    border-radius: 50%;
+    @include flexCenter();
+    @include size(45px);
+    svg {
+      @include size(16px);
+      color: white;
+    }
+  }
+}

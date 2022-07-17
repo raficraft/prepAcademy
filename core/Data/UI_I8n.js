@@ -43,3 +43,10 @@ export const UI_I18n_title_word = {
     EN: "Filter",
   },
 };
+
+export const UI_I18n_media_details = {
+  userNote: {
+    FR: `Note<br>des<br>utilisateur`,
+    EN: `User<br>note`,
+  },
+};
