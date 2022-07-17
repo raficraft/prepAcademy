@@ -4,6 +4,7 @@ import S from "./Pagination_input.module.scss";
 
 export let Pagination_input = ({ request, currentPage, ref, callback }) => {
   const [params, paramsURL] = useURL_TMDB(request);
+  const [error, setError] = useState(false);
   const error_message = useRef(null);
 
   function controlCapture(e) {
@@ -12,10 +13,10 @@ export let Pagination_input = ({ request, currentPage, ref, callback }) => {
     const isValid = regex.test(e.target.value);
 
     if (!isValid) {
-      error_message.current.textContent = "format invalid number only";
+      setError("Format invalid, number only");
       e.target.value = 1;
       setTimeout(() => {
-        error_message.current.textContent = null;
+        setError(false);
       }, 5000);
       return false;
     }
@@ -33,19 +34,31 @@ export let Pagination_input = ({ request, currentPage, ref, callback }) => {
 
   return (
     <div className={S.pagination_input}>
-      <label>Swipe to scroll pages</label>
-      <span>
-        <input
-          type="text"
-          id="changePage"
-          name="changePage"
-          defaultValue={params.pagination}
-          onChange={controlCapture}
-          pattern="^[0-9]*$"
-        />
-        <p>/{params.maxPage}</p>
-      </span>
-      <p className="error_message" ref={error_message}></p>
+      <div className={S.pagination_content}>
+        <label forHtml="changePage">Swipe to scroll pages</label>
+        <span className={S.bloc_input}>
+          <label forHtml="changePage" className="bold">
+            Pages :{" "}
+          </label>
+          <input
+            type="text"
+            id="changePage"
+            name="changePage"
+            defaultValue={params.pagination}
+            value={currentPage}
+            onChange={controlCapture}
+            pattern="^[0-9]*$"
+          />
+          <p class="bold">/ {params.maxPage}</p>
+        </span>
+      </div>
+      {error && (
+        <span className="error_container">
+          <p className="error_text" ref={error_message}>
+            {error}
+          </p>
+        </span>
+      )}
     </div>
   );
 };

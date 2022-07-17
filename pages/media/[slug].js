@@ -75,6 +75,14 @@ export default function Media() {
             }`}</h2>
           </header>
           <div className={S.media_page__content}>
+            {
+              /////////////////////////////////////////////////
+              // Aside menu
+              // Pagination
+              // DropList => filter
+              ////////////////////////////////////////////////
+            }
+
             <aside className={S.aside_container}>
               {!isTablet ? (
                 <>
@@ -89,6 +97,11 @@ export default function Media() {
                         isTablet ? "pagination_mobil" : "pagination_desktop"
                       }
                     ></Pagination>
+                    <Pagination_input
+                      request={request}
+                      currentPage={params.pagination}
+                      callback={paramsURL.setPagination}
+                    />
                   </div>
                 </>
               ) : (
@@ -107,6 +120,14 @@ export default function Media() {
                 </DropList>
               </div>
             </aside>
+
+            {
+              /////////////////////////////////////////////////
+              // List data Tablet
+              // List data Desktop
+              ////////////////////////////////////////////////
+            }
+
             {!SWR.data ? (
               <div className="loading">Loading ...</div>
             ) : (

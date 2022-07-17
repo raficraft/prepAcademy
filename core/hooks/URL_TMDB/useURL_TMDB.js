@@ -11,7 +11,7 @@ export function useURL_TMDB(request) {
   const [params, setParams] = useState({
     slug: "tv", // tv or movie
     pagination: 1,
-    language: "FR", // fr or en
+    language: UI.language, // fr or en
     maxPage: 500,
     id: 0,
   });

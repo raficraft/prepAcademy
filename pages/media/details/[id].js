@@ -2,9 +2,13 @@ import React from "react";
 import { IMG_URL_original } from "../../../config/request";
 import S from "./details.module.scss";
 import { useURL_TMDB } from "../../../core/hooks/URL_TMDB/useURL_TMDB";
+import useSWR from "swr";
+
+const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
 export default function Media_info() {
-  const [SWR, params] = useURL_TMDB("media");
+  const [params, paramsURL] = useURL_TMDB("media");
+  const SWR = useSWR(paramsURL[`media`](), fetcher);
 
   return (
     <>

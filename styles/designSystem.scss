@@ -35,16 +35,20 @@ button {
   cursor: pointer;
 }
 
+.bold {
+  font-weight: 900;
+}
+
 .error_container {
   background-color: rgb(250, 184, 184);
-  margin: 2rem 0;
   @include flexCenter();
-  padding: 1.5rem;
+  padding: 1rem 0;
   border-radius: 5px;
+  @include responsiveContainer(100%);
 
   .error_text {
     color: red;
-    font-weight: 700;
+    font-weight: 500;
   }
 }
 
