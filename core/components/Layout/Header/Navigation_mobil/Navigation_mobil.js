@@ -28,7 +28,7 @@ export default function Navigation_mobil() {
     });
   }
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     const header = document.getElementById("header_top");
 
     if (header) {
@@ -36,6 +36,7 @@ export default function Navigation_mobil() {
       setTopPosition(styles_header.height);
     }
   }, []);
+
   return (
     <Portal selector="#__body">
       <aside

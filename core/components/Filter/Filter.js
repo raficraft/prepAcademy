@@ -1,13 +1,13 @@
 import React from "react";
 import S from "./Filter.module.scss";
 
-export default function Filter({ CALL_URL }) {
+export default function Filter({ request }) {
   function handleChange(e) {
-    console.log(e);
     const radioBtn = e.target;
     const call_url = radioBtn.getAttribute("id");
-    CALL_URL(call_url);
+    request(call_url);
   }
+
   return (
     <div className={S.filter_container}>
       <div className={S.bloc_input}>

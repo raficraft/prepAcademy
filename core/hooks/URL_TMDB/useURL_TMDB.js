@@ -4,8 +4,6 @@ import useSWR from "swr";
 import { useRouter } from "next/router";
 import { UIContext } from "../../context/UIProvider/UIProvider";
 
-const fetcher = (...args) => fetch(...args).then((res) => res.json());
-
 export function useURL_TMDB(request) {
   const router = useRouter();
   const { UI } = useContext(UIContext);
@@ -45,6 +43,7 @@ export function useURL_TMDB(request) {
     },
 
     setPagination(page) {
+      console.log(page);
       setParams((S) => ({ ...S, pagination: page }));
     },
   };
@@ -83,8 +82,5 @@ export function useURL_TMDB(request) {
     defineParams[request]();
   }, [router.query.slug]);
 
-  // console.log("in hooks", paramsURL[request]());
-  const SWR = useSWR(paramsURL[request](), fetcher);
-
-  return [SWR, params, paramsURL];
+  return [params, paramsURL];
 }

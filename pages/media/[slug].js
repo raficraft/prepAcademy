@@ -1,24 +1,31 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import Head from "next/head";
+import useSWR from "swr";
 import S from "./movies.module.scss";
-import Pagination from "../../core/components/Filter/Pagination/Pagination";
-
 import { useURL_TMDB } from "../../core/hooks/URL_TMDB/useURL_TMDB";
+
 import {
   UI_I18n_title_pages,
   UI_I18n_title_word,
 } from "../../core/Data/UI_I8n";
+
 import { UIContext } from "../../core/context/UIProvider/UIProvider";
+import Pagination from "../../core/components/Filter/Pagination/Pagination";
 import Filter from "../../core/components/Filter/Filter";
 import useMediaQuery from "../../core/hooks/mediaQueries/useMediaQueries";
 import List_media from "../../core/components/List_media/Desktop/List_media";
 import List_media_tablet from "../../core/components/List_media/Tablet/List_media_tablet";
 import useTouchEvent from "../../core/hooks/touchEvent/useTouchEvent";
 import DropList from "../../core/components/DropList/DropList";
+import { Pagination_input } from "../../core/components/Filter/Pagination_input/Pagination_input";
+
+const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
 export default function Media() {
-  const [CALL_URL, setCAll_URL] = useState("discoverDESC");
-  const [SWR, params, paramsURL] = useURL_TMDB(CALL_URL);
+  const [request, setRequest] = useState("discoverDESC");
+  const [params, paramsURL] = useURL_TMDB(request);
+  const SWR = useSWR(paramsURL[request](), fetcher);
+
   const { UI, callback } = useContext(UIContext);
   const isTablet = useMediaQuery("(max-width: 960px)");
 
@@ -69,7 +76,7 @@ export default function Media() {
           </header>
           <div className={S.media_page__content}>
             <aside className={S.aside_container}>
-              {!isTablet && (
+              {!isTablet ? (
                 <>
                   <div className={S.bloc_aside}>
                     <header>
@@ -84,21 +91,24 @@ export default function Media() {
                     ></Pagination>
                   </div>
                 </>
+              ) : (
+                <div className={S.bloc_aside}>
+                  <Pagination_input
+                    request={request}
+                    currentPage={params.pagination}
+                    callback={paramsURL.setPagination}
+                  />
+                </div>
               )}
 
               <div className={S.bloc_aside}>
                 <DropList title={UI_I18n_title_word.filter[UI.language]}>
-                  <Filter CALL_URL={setCAll_URL} />
+                  <Filter request={setRequest} />
                 </DropList>
               </div>
-              {isTablet && (
-                <p>
-                  Swipe to scroll pages {params.pagination} / {params.maxPage}
-                </p>
-              )}
             </aside>
             {!SWR.data ? (
-              <div className="loading">Loading ... </div>
+              <div className="loading">Loading ...</div>
             ) : (
               <>
                 {isTablet ? (

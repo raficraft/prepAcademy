@@ -29,10 +29,6 @@ export default function UIProvider({ children }) {
     closeNavMobil() {
       SetUI((S) => ({ ...S, nav_mobil: false }));
     },
-
-    setPagination(page) {
-      SetUI((S) => ({ ...S, pagination_UI: page }));
-    },
   };
 
   return (
