@@ -6,49 +6,48 @@
 }
 
 .banner_content__img {
+  overflow: hidden;
+  position: relative;
   @include responsiveContainer(100%);
   min-height: 59vh;
-  position: relative;
-  overflow: hidden;
   aspect-ratio: 480/143;
   &:before {
-    content: "";
     @include fullAbsolute();
     background: linear-gradient(
       to right,
       rgb(212, 212, 212) 150px,
       rgba(219, 219, 219, 0.5) 100%
     );
+    content: "";
   }
 
   img {
-    object-position: top;
-    object-fit: cover;
     width: 100%;
     height: 100%;
+    object-position: top;
+    object-fit: cover;
   }
 
   .backdrop_fail {
-    background-color: rgba(3, 37, 65, 1);
+    position: relative;
     @include flex(column, center, flex-end);
     @include responsiveContainer(100%);
-    aspect-ratio: 25/38;
-    padding: 0 2rem;
-    position: relative;
-    @include responsiveContainer(100%);
     height: 100%;
+    padding: 0 2rem;
+    background-color: rgba(3, 37, 65, 1);
+    aspect-ratio: 25/38;
 
     h2 {
       @include responsiveContainer(100%);
-      text-align: right;
       font-size: 4rem;
       color: white;
+      text-align: right;
     }
 
     &:before {
-      content: "";
       @include fullAbsolute();
       background-color: rgba(182, 182, 182, 0.4);
+      content: "";
     }
   }
 }
@@ -56,13 +55,13 @@
 .banner_inside {
   position: absolute;
   @include fullAbsolute();
-  @include responsiveContainer(var(--layout_width));
-  margin: auto;
   @include flex(row, flex-start, center, nowrap);
-  gap: 2.5rem;
-  padding: 0 3rem;
+  @include responsiveContainer(var(--layout_width));
   min-height: 100%;
   height: 100%;
+  gap: 2.5rem;
+  margin: auto;
+  padding: 0 3rem;
 
   &_img {
     min-width: 22.2%;
@@ -70,11 +69,11 @@
     max-height: 100%;
     aspect-ratio: 2/3;
     img {
-      border-radius: 10px;
-      object-position: top;
-      object-fit: cover;
       width: 100%;
       height: 100%;
+      object-position: top;
+      object-fit: cover;
+      border-radius: 10px;
     }
   }
 
@@ -122,11 +121,11 @@
     .genre:before,
     .duration:before {
       display: flex;
-      content: " ";
       @include size(7px);
-      background-color: black;
       margin: 0 0.5rem;
+      background-color: black;
       border-radius: 50%;
+      content: " ";
     }
   }
 }
@@ -174,9 +173,9 @@
     margin: 1rem 0;
   }
   .tagline {
+    margin: 0 0 1.5rem 0;
     font-style: italic;
     color: rgb(71, 71, 71);
-    margin: 0 0 1.5rem 0;
 
     @media screen and (max-width: 960px) {
       color: rgb(197, 197, 197);
@@ -190,9 +189,9 @@ $background_color: rgb(0, 0, 0);
   .banner_inside {
     position: static;
     @include flex(column);
-    background-color: $background_color;
-    padding: 0;
     gap: 0;
+    padding: 0;
+    background-color: $background_color;
 
     a,
     span,
@@ -203,40 +202,40 @@ $background_color: rgb(0, 0, 0);
   }
   .banner_img__mobil {
     @include responsiveContainer(100%);
+    @include flexCenter();
     position: relative;
     aspect-ratio: 20/9;
-    @include flexCenter();
 
     &:before {
-      content: "";
       @include fullAbsolute();
       background: linear-gradient(
         to right,
         $background_color 15%,
         rgba(219, 219, 219, 0.3) 30%
       );
+      content: "";
     }
 
     img {
+      width: 100%;
+      height: 100%;
       margin-bottom: 1px;
       object-position: top;
       object-fit: cover;
-      width: 100%;
-      height: 100%;
     }
   }
 
   .banner_poster_wrapper {
     @include fullAbsolute();
-    content: " ";
     @include flex(column, center);
+    content: " ";
   }
 
   .banner_poster__mobil {
-    @include responsiveContainer(27%);
-    aspect-ratio: 2/3;
-    margin: 0 0 0 1rem;
     z-index: 100;
+    @include responsiveContainer(27%);
+    margin: 0 0 0 1rem;
+    aspect-ratio: 2/3;
 
     img {
       object-fit: cover;
@@ -247,17 +246,17 @@ $background_color: rgb(0, 0, 0);
   }
 
   .banner_inside_content {
-    padding: 1rem 0 2rem 0;
     @include responsiveContainer(100%);
+    padding: 1rem 0 2rem 0;
     .title_content {
-      @include responsiveContainer(100%);
       @include flexCenter();
+      @include responsiveContainer(100%);
     }
   }
 
   .radial_tablet {
-    @include responsiveContainer(100%);
     @include flex(row, space-around, center);
+    @include responsiveContainer(100%);
     margin: 1.25rem 0;
     padding: 0 1rem;
     .radial_container {
@@ -278,8 +277,8 @@ $background_color: rgb(0, 0, 0);
       @include responsiveContainer(100%);
       @include flexCenter(column-reverse);
       margin: 0 0 1rem 0;
-      background-color: rgba(58, 58, 58, 0.8);
       padding: 0.75rem 1rem;
+      background-color: rgba(58, 58, 58, 0.8);
       border-top: 1px solid rgb(168, 168, 168);
       border-bottom: 1px solid rgb(168, 168, 168);
 
@@ -318,11 +317,11 @@ $background_color: rgb(0, 0, 0);
 }
 
 .hr_vertical {
-  background-color: black;
+  display: inline-block;
   width: 1px;
   height: 1.5rem;
+  background-color: black;
   content: " ";
-  display: inline-block;
 }
 
 @media screen and (max-width: 400px) {
@@ -332,15 +331,13 @@ $background_color: rgb(0, 0, 0);
 }
 
 .video_container {
-  position: relative;
-  width: 100%;
-  height: 100%;
   overflow: hidden;
-  background-color: black;
+  position: relative;
+  @include flexCenter();
   width: var(--video_width);
   height: calc(var(--video_width) / 16 * 9);
-  @include flexCenter();
   padding-top: -56.25%;
+  background-color: black;
   .responsive_iframe {
     position: absolute;
     top: 0;
