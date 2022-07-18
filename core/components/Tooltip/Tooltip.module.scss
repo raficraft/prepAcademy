@@ -13,6 +13,47 @@
     svg {
       @include size(16px);
       color: white;
+      transition: 0.3s;
+    }
+
+    &:hover {
+      svg {
+        transition: 0.3s;
+        transform: scale(1.2);
+        color: rgb(233, 116, 116);
+      }
+    }
+  }
+  .tooltip_text {
+    position: absolute;
+    bottom: -38px;
+    @include flexCenter();
+
+    background-color: rgba(3, 37, 65, 1);
+    color: white;
+    text-align: center;
+    border-radius: 5px;
+    padding: 0.5rem 1rem;
+
+    p {
+      white-space: nowrap;
+      font-size: 0.875rem;
+    }
+
+    &:before {
+      position: absolute;
+      top: -6px;
+      left: centerAbsolute(12px);
+      @include emptyContent();
+      @include size(12px);
+      background-color: rgba(3, 37, 65, 1);
+      transform: rotate(45deg);
+      @media screen and (max-width: 1600px) {
+        left: 215px;
+      }
+      @media screen and (max-width: 600px) {
+        left: 231px;
+      }
     }
   }
 }

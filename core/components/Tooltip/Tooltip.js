@@ -6,12 +6,26 @@ export default function Tooltip({
   hover_text = "hover_text",
   callback = () => {},
 }) {
-  const [isShow, setIshow] = useState(false);
+  const [isShow, setIsShow] = useState(false);
 
   return (
     <div className={S.tooltip}>
-      <span className={S.tooltip_container}>{SVG}</span>
-      {isShow && <span class={S.tooltip_text}>{hover_text}</span>}
+      <span
+        className={S.tooltip_container}
+        onMouseEnter={() => {
+          setIsShow(true);
+        }}
+        onMouseLeave={() => {
+          setIsShow(false);
+        }}
+      >
+        {SVG}
+      </span>
+      {isShow && (
+        <span class={S.tooltip_text}>
+          <p>{hover_text}</p>
+        </span>
+      )}
     </div>
   );
 }

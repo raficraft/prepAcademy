@@ -119,7 +119,7 @@ export function Icon_chevron_right(props) {
 export const Icon_thumbnails_list = (props) => (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" {...props}>
     <path
-      fill="#fff"
+      fill="currentColor"
       d="M11 14v4a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1v-4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1Zm-1 7H6a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-4a1 1 0 0 0-1-1Zm0-16H6a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1Zm17 6H14a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1h13a1 1 0 0 0 1-1v-1a1 1 0 0 0-1-1Zm0-6H14a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1h13a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1Zm0 18H14a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1h13a1 1 0 0 0 1-1v-1a1 1 0 0 0-1-1Zm0-6H14a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1h13a1 1 0 0 0 1-1v-1a1 1 0 0 0-1-1Z"
     />
   </svg>

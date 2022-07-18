@@ -282,17 +282,17 @@ export default function Media_info() {
 
                       <Tooltip
                         SVG={<Icon_heart />}
-                        hover_text={"Ajouter à une liste"}
+                        hover_text={"Marquer comme favori"}
                       ></Tooltip>
 
                       <Tooltip
                         SVG={<Icon_bookmark />}
-                        hover_text={"Ajouter à une liste"}
+                        hover_text={"Ajouter à votre liste de suivi"}
                       ></Tooltip>
 
                       <Tooltip
                         SVG={<Icon_star />}
-                        hover_text={"Ajouter à une liste"}
+                        hover_text={"Notez moi !"}
                       ></Tooltip>
                     </div>
 

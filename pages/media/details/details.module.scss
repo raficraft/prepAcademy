@@ -175,7 +175,12 @@
   }
   .tagline {
     font-style: italic;
-    color: rgb(167, 167, 167);
+    color: rgb(71, 71, 71);
+    margin: 0 0 1.5rem 0;
+
+    @media screen and (max-width: 960px) {
+      color: rgb(197, 197, 197);
+    }
   }
 }
 
@@ -242,7 +247,7 @@ $background_color: rgb(0, 0, 0);
   }
 
   .banner_inside_content {
-    padding: 1rem 0;
+    padding: 1rem 0 2rem 0;
     @include responsiveContainer(100%);
     .title_content {
       @include responsiveContainer(100%);
