@@ -17,7 +17,7 @@ export const UI_I18n_nav = {
 
 export const UI_I18n_searchBar = {
   placeholder: {
-    FR: "Rechercher un film, une série...",
+    FR: "Rechercher un film, une série... 3 caractères minimum",
     EN: "Search for a movie, a series..",
   },
 };
@@ -30,6 +30,11 @@ export const UI_I18n_title_pages = {
   tv: {
     FR: "Émissions télévisées",
     EN: "TV show",
+  },
+
+  search: {
+    FR: "Résultats de votre recherche",
+    EN: "Results of your search",
   },
 };
 

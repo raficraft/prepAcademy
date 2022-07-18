@@ -32,7 +32,12 @@ export default function Media_info() {
   const isTablet = useMediaQuery("(max-width: 960px)");
 
   function getLastTrailer(videoArray) {
-    const lastTrailer = videoArray.find((el, key) => el.type === "Trailer");
+    console.log("trailer array", videoArray);
+    let lastTrailer = videoArray.find((el, key) => el.type === "Trailer");
+
+    if (!lastTrailer) {
+      lastTrailer = videoArray[0];
+    }
     return `https://www.youtube.com/embed/${lastTrailer.key}`;
   }
 

@@ -9,11 +9,13 @@ export function useURL_TMDB(request = "discoverDESC") {
   const { UI } = useContext(UIContext);
 
   const [params, setParams] = useState({
-    slug: "tv", // tv or movie
+    slug: "movie", // tv or movie
     pagination: 1,
     language: UI.language, // fr or en
     maxPage: 500,
     id: 0,
+    query: "",
+    searchPagination: 1,
   });
 
   const paramsURL = {
@@ -28,6 +30,7 @@ export function useURL_TMDB(request = "discoverDESC") {
         ? "sort_by=original_title"
         : "sort_by=name";
     },
+
     discoverASC(slug = params.slug, pagination = params.pagination) {
       return `https://api.themoviedb.org/3/discover/${slug}?sort_by=popularity.asc&${API_KEY}&${this.getLanguage()}&page=${pagination}&include_adult=false`;
     },
@@ -57,6 +60,14 @@ export function useURL_TMDB(request = "discoverDESC") {
       }/credits?${API_KEY}&language=${UI.language.toLowerCase()}`;
     },
 
+    search(slug = params.slug, query = params.query) {
+      return `   https://api.themoviedb.org/3/search/${
+        params.slug
+      }?${API_KEY}&${params.query}&${this.getLanguage()}&page=${
+        params.pagination
+      }&include_adult=false`;
+    },
+
     setPagination(page) {
       setParams((S) => ({ ...S, pagination: page }));
     },
@@ -79,6 +90,19 @@ export function useURL_TMDB(request = "discoverDESC") {
         ...S,
         slug: params[0],
         id: params[1],
+      }));
+    },
+
+    search() {
+      const params = window.location.search.split("&");
+      const query = params[0].replaceAll("%", "+").substring(1);
+
+      console.log(params[1]);
+      console.log(query);
+      setParams((S) => ({
+        ...S,
+        slug: params[1],
+        query: query,
       }));
     },
 

@@ -5,7 +5,7 @@
   border-bottom: 1px solid rgb(187, 187, 187);
 }
 
-.form {
+.form_content {
   @include flexCenter();
   @include responsiveContainer(100%);
   position: relative;
@@ -23,6 +23,34 @@
         transition: 0.5s;
         color: black;
       }
+    }
+  }
+}
+
+.bloc_input {
+  @include flexCenter(column);
+  span {
+    @include flex(row, center, center);
+    @include responsiveContainer(100%);
+    border-bottom: 1px solid;
+  }
+  button {
+    display: block;
+    width: var(--layout_width);
+    height: 44px;
+    text-align: left;
+    background-color: transparent;
+    border: none;
+    padding: 1rem 3rem;
+    font-style: italic;
+    font-size: 14px;
+    svg {
+      margin-right: 1rem;
+    }
+
+    &:hover {
+      transition: 0.3s;
+      background-color: rgba(226, 226, 226, 0.4);
     }
   }
 }
