@@ -58,7 +58,6 @@ export function useURL_TMDB(request = "discoverDESC") {
     },
 
     setPagination(page) {
-      console.log(page);
       setParams((S) => ({ ...S, pagination: page }));
     },
   };

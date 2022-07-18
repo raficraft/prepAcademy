@@ -335,7 +335,6 @@ export default function Media_info() {
               <div className={S.video_container}>
                 <iframe
                   className={S.responsive_iframe}
-                  // src={`https://www.youtube.com/embed/${SWR.data.videos.results[0].key}`}
                   src={getLastTrailer(SWR.data.videos.results)}
                   title="YouTube video player"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

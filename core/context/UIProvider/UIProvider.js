@@ -31,7 +31,6 @@ export default function UIProvider({ children }) {
       setUI((S) => ({ ...S, nav_mobil: false }));
     },
     openModal: (state) => {
-      console.log("toto");
       setUI((S) => ({ ...S, modal: state }));
     },
 

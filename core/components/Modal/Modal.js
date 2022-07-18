@@ -8,7 +8,6 @@ export default function Modal({ children }) {
 
   useEffect(() => {
     document.addEventListener("keyup", (event) => {
-      console.log(event.code);
       if (event.code === "Escape") {
         callback.closeModal();
       }
@@ -16,7 +15,6 @@ export default function Modal({ children }) {
 
     return () => {
       document.removeEventListener("keyup", (event) => {
-        console.log(event.code);
         if (event.code === "Escape") {
           callback.closeModal();
         }
