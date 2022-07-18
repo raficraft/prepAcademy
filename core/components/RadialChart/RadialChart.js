@@ -108,7 +108,7 @@ export default function RadialChart({
         />
         <p>
           {score === 0 ? "NR" : `${score}`}
-          <sup>%</sup>
+          {score > 0 && <sup>%</sup>}
         </p>
       </div>
       {(children && labelPosition === "bottom") ||

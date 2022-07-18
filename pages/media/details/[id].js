@@ -304,8 +304,12 @@ export default function Media_info() {
                   {SWR.data.tagline && (
                     <p className={S.tagline}>{SWR.data.tagline}</p>
                   )}
-                  <h2>Synopsis</h2>
-                  {SWR.data.overview && <p>{SWR.data.overview}</p>}
+                  {SWR.data.overview && (
+                    <>
+                      <h2>Synopsis</h2>
+                      <p>{SWR.data.overview}</p>
+                    </>
+                  )}
                 </div>
               </div>
             </div>

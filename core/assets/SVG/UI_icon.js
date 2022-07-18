@@ -168,10 +168,10 @@ export function Icon_play(props) {
       xmlnsXlink="http://www.w3.org/1999/xlink"
       width="1em"
       height="1em"
-      viewBox="0 0 512 512"
+      viewBox="0 0 24 24"
       {...props}
     >
-      <path fill="currentColor" d="M0 0v512l512-256z"></path>
+      <path fill="currentColor" d="M8 19V5l11 7Z"></path>
     </svg>
   );
 }

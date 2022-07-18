@@ -35,16 +35,15 @@ export let Pagination_input = ({ request, currentPage, ref, callback }) => {
   return (
     <div className={S.pagination_input}>
       <div className={S.pagination_content}>
-        <label forHtml="changePage">Swipe to scroll pages</label>
+        <label forhtml="changePage">Swipe to scroll pages</label>
         <span className={S.bloc_input}>
-          <label forHtml="changePage" className="bold">
+          <label forhtml="changePage" className="bold">
             Pages :{" "}
           </label>
           <input
             type="text"
             id="changePage"
             name="changePage"
-            defaultValue={params.pagination}
             value={currentPage}
             onChange={controlCapture}
             pattern="^[0-9]*$"

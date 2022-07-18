@@ -4,7 +4,7 @@ import useSWR from "swr";
 import { useRouter } from "next/router";
 import { UIContext } from "../../context/UIProvider/UIProvider";
 
-export function useURL_TMDB(request) {
+export function useURL_TMDB(request = "discoverDESC") {
   const router = useRouter();
   const { UI } = useContext(UIContext);
 
@@ -22,6 +22,12 @@ export function useURL_TMDB(request) {
         UI.language
       }`;
     },
+
+    getSortBy() {
+      return params.slug === "movie"
+        ? "sort_by=original_title"
+        : "sort_by=name";
+    },
     discoverASC(slug = params.slug, pagination = params.pagination) {
       return `https://api.themoviedb.org/3/discover/${slug}?sort_by=popularity.asc&${API_KEY}&${this.getLanguage()}&page=${pagination}&include_adult=false`;
     },
@@ -31,11 +37,11 @@ export function useURL_TMDB(request) {
     },
 
     discoverByNameASC(slug = params.slug, pagination = params.pagination) {
-      return `https://api.themoviedb.org/3/discover/${slug}?sort_by=original_title.asc&${API_KEY}&${this.getLanguage()}&page=${pagination}&include_adult=false`;
+      return `https://api.themoviedb.org/3/discover/${slug}?${this.getSortBy()}.asc&${API_KEY}&${this.getLanguage()}&page=${pagination}&include_adult=false`;
     },
 
     discoverByNameDESC(slug = params.slug, pagination = params.pagination) {
-      return `https://api.themoviedb.org/3/discover/${slug}?sort_by=original_title.desc&${API_KEY}&${this.getLanguage()}&page=${pagination}&include_adult=false`;
+      return `https://api.themoviedb.org/3/discover/${slug}?${this.getSortBy()}.desc&${API_KEY}&${this.getLanguage()}&page=${pagination}&include_adult=false`;
     },
 
     media(slug = params.slug, id = params.id) {
@@ -58,15 +64,6 @@ export function useURL_TMDB(request) {
   };
 
   const defineParams = {
-    discoverASC() {
-      const pathArray = window.location.pathname.split("/");
-      setParams((S) => ({
-        ...S,
-        slug: pathArray[pathArray.length - 1],
-        pagination: 1,
-      }));
-    },
-
     discoverDESC() {
       const pathArray = window.location.pathname.split("/");
       setParams((S) => ({
@@ -98,6 +95,14 @@ export function useURL_TMDB(request) {
   };
 
   useEffect(() => {
+    if (
+      request === "discoverDESC" ||
+      request === "discoverASC" ||
+      request === "discoverByNameASC" ||
+      request === "discoverByNameDESC"
+    ) {
+      request = "discoverDESC";
+    }
     defineParams[request]();
   }, [router.query.slug]);
 
