@@ -21,6 +21,7 @@ import {
   Icon_thumbnails_list,
 } from "../../../core/assets/SVG/UI_icon";
 import useMediaQuery from "../../../core/hooks/mediaQueries/useMediaQueries";
+import Modal from "../../../core/components/Modal/Modal";
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
@@ -29,6 +30,11 @@ export default function Media_info() {
   const [params, paramsURL] = useURL_TMDB("media");
   const SWR = useSWR(paramsURL[`media`](), fetcher);
   const isTablet = useMediaQuery("(max-width: 960px)");
+
+  function getLastTrailer(videoArray) {
+    const lastTrailer = videoArray.find((el, key) => el.type === "Trailer");
+    return `https://www.youtube.com/embed/${lastTrailer.key}`;
+  }
 
   function convertRunTime(time) {
     console.log(UI);
@@ -49,7 +55,7 @@ export default function Media_info() {
     return arrayGenre.map((el, key) => {
       const endLine = key < arrayGenre.length - 1 ? "," : "";
       return (
-        <Link href="/">
+        <Link href="/" key={key}>
           <a className={S.genre_link}>
             {el.name}
             {endLine}
@@ -206,7 +212,12 @@ export default function Media_info() {
                       <span className={S.hr_vertical}></span>
 
                       <span className={S.trailer}>
-                        <p className={S.trailer_text}>
+                        <p
+                          className={S.trailer_text}
+                          onClick={() => {
+                            callback.openModal(true);
+                          }}
+                        >
                           <Icon_play /> Bande-annonce
                         </p>
                       </span>
@@ -286,7 +297,12 @@ export default function Media_info() {
                     </div>
 
                     <span className={S.trailer}>
-                      <p className={S.trailer_text}>
+                      <p
+                        className={S.trailer_text}
+                        onClick={() => {
+                          callback.openModal(true);
+                        }}
+                      >
                         <Icon_play /> Bande-annonce
                       </p>
                     </span>
@@ -314,6 +330,20 @@ export default function Media_info() {
               </div>
             </div>
           </section>
+          {UI.modal && (
+            <Modal>
+              <div className={S.video_container}>
+                <iframe
+                  className={S.responsive_iframe}
+                  // src={`https://www.youtube.com/embed/${SWR.data.videos.results[0].key}`}
+                  src={getLastTrailer(SWR.data.videos.results)}
+                  title="YouTube video player"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                ></iframe>
+              </div>
+            </Modal>
+          )}
         </>
       ) : (
         <p>Loading ...</p>

@@ -1,0 +1,36 @@
+@import "./../../sass/function.scss";
+
+.modal {
+  position: absolute;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 900;
+  top: 78px;
+  transform: translateY(-150%);
+  height: calc(100% - 78px);
+  animation: 0.5s enterIN forwards;
+  animation-direction: normal;
+  @include flexCenter();
+
+  &[data-show="reverse"] {
+    animation: 0.5s enterOUT forwards;
+  }
+}
+
+@keyframes enterIN {
+  0% {
+    transform: translateY(-150%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes enterOUT {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-150%);
+  }
+}

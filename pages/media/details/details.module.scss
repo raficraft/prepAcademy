@@ -36,7 +36,7 @@
     padding: 0 2rem;
     position: relative;
     @include responsiveContainer(100%);
-    height: 59vh;
+    height: 100%;
 
     h2 {
       @include responsiveContainer(100%);
@@ -107,7 +107,7 @@
     @include flex(row);
 
     .genre {
-      @include flexCenter(row);
+      @include flex(row, center, flex-start, wrap);
       &_link {
         margin-right: 0.25rem;
         &:last-child {
@@ -153,6 +153,14 @@
 .trailer {
   @include flexCenter(row);
   margin: 0 1.5rem;
+  cursor: pointer;
+
+  &:hover {
+    color: rgb(0, 110, 255);
+    svg {
+      color: rgb(0, 110, 255);
+    }
+  }
 
   &_text {
     @include flexCenter(row);
@@ -246,13 +254,17 @@ $background_color: rgb(0, 0, 0);
     @include responsiveContainer(100%);
     @include flex(row, space-around, center);
     margin: 1.25rem 0;
-    padding: 0 1.5rem;
+    padding: 0 1rem;
     .radial_container {
       @include flex(row);
     }
 
     .radial_label {
-      margin: 0 0.5rem;
+      margin: 0 0 0 0.5rem;
+    }
+
+    .trailer {
+      margin: 0;
     }
   }
 
@@ -262,7 +274,7 @@ $background_color: rgb(0, 0, 0);
       @include flexCenter(column-reverse);
       margin: 0 0 1rem 0;
       background-color: rgba(58, 58, 58, 0.8);
-      padding: 0.75rem 0;
+      padding: 0.75rem 1rem;
       border-top: 1px solid rgb(168, 168, 168);
       border-bottom: 1px solid rgb(168, 168, 168);
 
@@ -277,7 +289,7 @@ $background_color: rgb(0, 0, 0);
     }
 
     .title_content {
-      padding: 0 1.5rem;
+      padding: 0 1rem;
 
       a {
         flex: 1;
@@ -291,7 +303,7 @@ $background_color: rgb(0, 0, 0);
   }
 
   .synopsis_container {
-    padding: 0 1.5rem;
+    padding: 0 1rem;
     h2 {
       margin: 0 0 1rem 0;
     }
@@ -306,4 +318,32 @@ $background_color: rgb(0, 0, 0);
   height: 1.5rem;
   content: " ";
   display: inline-block;
+}
+
+@media screen and (max-width: 400px) {
+  .radial_tablet {
+    @include flex(row, space-between, center);
+  }
+}
+
+.video_container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: black;
+  width: var(--video_width);
+  height: calc(var(--video_width) / 16 * 9);
+  @include flexCenter();
+  padding-top: -56.25%;
+  .responsive_iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
 }

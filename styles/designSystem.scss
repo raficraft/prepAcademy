@@ -11,13 +11,33 @@ body {
   font-family: "Source Sans Pro", Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   font-size: 1rem;
-  list-style: 1;
+  line-height: 1;
 }
 
 :root {
   --layout_width: 1440px;
   --border: 1px solid #e3e3e3;
   --shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  --video_width: 1120px;
+  @media screen and (max-width: 1280px) {
+    --video_width: 960px;
+  }
+
+  @media screen and (max-width: 1080px) {
+    --video_width: 720px;
+  }
+
+  @media screen and (max-width: 860px) {
+    --video_width: 530px;
+  }
+
+  @media screen and (max-width: 530px) {
+    --video_width: 460px;
+  }
+
+  @media screen and (max-width: 500px) {
+    --video_width: 320px;
+  }
 }
 
 * {
