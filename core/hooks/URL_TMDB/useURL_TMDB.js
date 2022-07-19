@@ -27,7 +27,7 @@ export function useURL_TMDB(request = "discoverDESC") {
         lang = UI.language.toLowerCase();
       }
 
-      return `language=${lang}-${UI.language}`;
+      return `language=${lang}-${UI.language}&region=${params.language}`;
     },
 
     getSortBy() {
