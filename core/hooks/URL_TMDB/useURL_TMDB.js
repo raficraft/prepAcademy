@@ -53,11 +53,11 @@ export function useURL_TMDB(request = "discoverDESC") {
     },
 
     discoverByNameASC(slug = params.slug, pagination = params.pagination) {
-      return `https://api.themoviedb.org/3/discover/${slug}?${this.getSortBy()}.asc&${API_KEY}&${this.getLanguage()}&page=${pagination}&include_adult=false`;
+      return `https://api.themoviedb.org/3/discover/${slug}?${API_KEY}&${this.getSortBy()}.asc&${this.getLanguage()}&page=${pagination}&include_adult=false`;
     },
 
     discoverByNameDESC(slug = params.slug, pagination = params.pagination) {
-      return `https://api.themoviedb.org/3/discover/${slug}?${this.getSortBy()}.desc&${API_KEY}&${this.getLanguage()}&page=${pagination}&include_adult=false`;
+      return `https://api.themoviedb.org/3/discover/${slug}?${API_KEY}&${this.getSortBy()}.desc&${this.getLanguage()}&page=${pagination}&include_adult=false`;
     },
 
     media(slug = params.slug, id = params.id) {
