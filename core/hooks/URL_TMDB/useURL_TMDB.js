@@ -39,6 +39,13 @@ export function useURL_TMDB(request = "discoverDESC") {
       return `https://api.themoviedb.org/3/discover/${slug}?${API_KEY}&sort_by=popularity.desc&${this.getLanguage()}&page=${pagination}&include_adult=false`;
     },
 
+    voteASC(slug = params.slug, pagination = params.pagination) {
+      return `https://api.themoviedb.org/3/discover/${slug}?${API_KEY}&sort_by=vote_average.asc&${this.getLanguage()}&page=${pagination}&include_adult=false`;
+    },
+    voteDESC(slug = params.slug, pagination = params.pagination) {
+      return `https://api.themoviedb.org/3/discover/${slug}?${API_KEY}&sort_by=vote_average.desc&${this.getLanguage()}&page=${pagination}&include_adult=false`;
+    },
+
     discoverByNameASC(slug = params.slug, pagination = params.pagination) {
       return `https://api.themoviedb.org/3/discover/${slug}?${this.getSortBy()}.asc&${API_KEY}&${this.getLanguage()}&page=${pagination}&include_adult=false`;
     },
@@ -122,7 +129,9 @@ export function useURL_TMDB(request = "discoverDESC") {
       request === "discoverDESC" ||
       request === "discoverASC" ||
       request === "discoverByNameASC" ||
-      request === "discoverByNameDESC"
+      request === "discoverByNameDESC" ||
+      request === "voteAverageDESC" ||
+      request === "voteAverageASC"
     ) {
       request = "discoverDESC";
     }

@@ -60,3 +60,20 @@ export const UI_I18n_media_details = {
     EN: `User<br>note`,
   },
 };
+
+export const UI_I18n_aside_filter = {
+  popularity: {
+    FR: `Popularité +/-`,
+    EN: `Popularity +/-`,
+  },
+
+  titleASC: {
+    FR: `Titres de(A-Z)`,
+    EN: `Titles (A-Z)`,
+  },
+
+  titleDESC: {
+    FR: `Titres de(Z-A)`,
+    EN: `Titles (Z-A)`,
+  },
+};

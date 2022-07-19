@@ -66,6 +66,36 @@ export default function Filter({ request }) {
           />
         </label>
       </div>
+
+      <div className={S.bloc_input}>
+        <label htmlFor="voteDESC" tabIndex="4">
+          {" "}
+          Votes +/-
+          <input
+            type="radio"
+            id="voteDESC"
+            name="call_url"
+            onChange={(e) => {
+              handleChange(e);
+            }}
+          />
+        </label>
+      </div>
+
+      <div className={S.bloc_input}>
+        <label htmlFor="voteASC" tabIndex="4">
+          {" "}
+          Votes -/+
+          <input
+            type="radio"
+            id="voteASC"
+            name="call_url"
+            onChange={(e) => {
+              handleChange(e);
+            }}
+          />
+        </label>
+      </div>
     </div>
   );
 }
