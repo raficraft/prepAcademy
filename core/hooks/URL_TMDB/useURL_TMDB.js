@@ -20,9 +20,14 @@ export function useURL_TMDB(request = "discoverDESC") {
 
   const paramsURL = {
     getLanguage() {
-      return `language=${UI.language.toLowerCase()}-${UI.language}&region=${
-        UI.language
-      }`;
+      let lang = "";
+      if (UI.language === "EN") {
+        lang = "en-US";
+      } else {
+        lang = UI.language.toLowerCase();
+      }
+
+      return `language=${lang}-${UI.language}`;
     },
 
     getSortBy() {
@@ -40,8 +45,9 @@ export function useURL_TMDB(request = "discoverDESC") {
     },
 
     voteASC(slug = params.slug, pagination = params.pagination) {
-      return `https://api.themoviedb.org/3/discover/${slug}?${API_KEY}&sort_by=vote_average.asc&${this.getLanguage()}&page=${pagination}&include_adult=false`;
+      return `https://api.themoviedb.org/3/discover/${slug}?sort_by=vote_average.asc&${API_KEY}&${this.getLanguage()}&page=${pagination}&include_adult=false`;
     },
+
     voteDESC(slug = params.slug, pagination = params.pagination) {
       return `https://api.themoviedb.org/3/discover/${slug}?${API_KEY}&sort_by=vote_average.desc&${this.getLanguage()}&page=${pagination}&include_adult=false`;
     },
@@ -102,10 +108,11 @@ export function useURL_TMDB(request = "discoverDESC") {
 
     search() {
       const params = window.location.search.split("&");
+      console.error(params[0]);
       const query = params[0].replaceAll("%", "+").substring(1);
 
-      console.log(params[1]);
-      console.log(query);
+      console.log("slug", params[1]);
+      console.log("requete", query);
       setParams((S) => ({
         ...S,
         slug: params[1],
@@ -130,8 +137,8 @@ export function useURL_TMDB(request = "discoverDESC") {
       request === "discoverASC" ||
       request === "discoverByNameASC" ||
       request === "discoverByNameDESC" ||
-      request === "voteAverageDESC" ||
-      request === "voteAverageASC"
+      request === "voteASC" ||
+      request === "voteDESC"
     ) {
       request = "discoverDESC";
     }

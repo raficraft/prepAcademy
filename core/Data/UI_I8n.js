@@ -61,19 +61,34 @@ export const UI_I18n_media_details = {
   },
 };
 
-export const UI_I18n_aside_filter = {
-  popularity: {
+export const UI_I18n_media_filter = {
+  popularityDESC: {
     FR: `Popularité +/-`,
+    EN: `Popularity -/+`,
+  },
+
+  popularityASC: {
+    FR: `Popularité -/+`,
     EN: `Popularity +/-`,
   },
 
   titleASC: {
-    FR: `Titres de(A-Z)`,
-    EN: `Titles (A-Z)`,
+    FR: `Titres (de A-Z)`,
+    EN: ` Titles ( A-Z)`,
   },
 
   titleDESC: {
-    FR: `Titres de(Z-A)`,
-    EN: `Titles (Z-A)`,
+    FR: `Titres (de Z-A)`,
+    EN: ` Titles (Z-A)`,
+  },
+
+  voteDESC: {
+    FR: `Notes +/-`,
+    EN: `Notes -/+`,
+  },
+
+  voteASC: {
+    FR: `Notes -/+`,
+    EN: `Notes +/-`,
   },
 };
