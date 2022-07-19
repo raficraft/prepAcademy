@@ -25,7 +25,7 @@ export default function SearchBar() {
       return false;
     }
 
-    setIsShow(true);
+    // setIsShow(true);
   }
 
   function launchSearch(event, slug) {
@@ -41,8 +41,7 @@ export default function SearchBar() {
       return false;
     }
 
-    console.log(`media/search?query=${request}&${slug}`);
-    router.push(`media/search?query=${request}&${slug}`);
+    router.push(`/search?query=${request}&${slug}`);
   }
 
   return (
