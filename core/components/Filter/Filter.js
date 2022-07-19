@@ -56,20 +56,6 @@ export default function Filter({ request }) {
           />
         </label>
       </div>
-      <div className={S.bloc_input}>
-        <label htmlFor="discoverByNameDESC" tabIndex="4">
-          {" "}
-          {UI_I18n_media_filter.titleDESC[UI.language]}
-          <input
-            type="radio"
-            id="discoverByNameDESC"
-            name="call_url"
-            onChange={(e) => {
-              handleChange(e);
-            }}
-          />
-        </label>
-      </div>
 
       <div className={S.bloc_input}>
         <label htmlFor="voteDESC" tabIndex="4">
