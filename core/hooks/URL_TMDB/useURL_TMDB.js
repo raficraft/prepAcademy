@@ -61,6 +61,7 @@ export function useURL_TMDB(request = "discoverDESC") {
     },
 
     search(slug = params.slug, query = params.query) {
+      console.log("??????????????????????????????????????", params.query);
       return `   https://api.themoviedb.org/3/search/${
         params.slug
       }?${API_KEY}&${params.query}&${this.getLanguage()}&page=${
@@ -94,11 +95,16 @@ export function useURL_TMDB(request = "discoverDESC") {
     },
 
     search() {
+      console.log(
+        "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!",
+        window.location.pathname
+      );
       const params = window.location.search.split("&");
+      console.error(params[0]);
       const query = params[0].replaceAll("%", "+").substring(1);
 
-      console.log(params[1]);
-      console.log(query);
+      console.log("slug", params[1]);
+      console.log("requete", query);
       setParams((S) => ({
         ...S,
         slug: params[1],
@@ -127,7 +133,7 @@ export function useURL_TMDB(request = "discoverDESC") {
       request = "discoverDESC";
     }
     defineParams[request]();
-  }, [router.query.slug]);
+  }, [router.query.slug, router.pathname]);
 
   return [params, paramsURL];
 }

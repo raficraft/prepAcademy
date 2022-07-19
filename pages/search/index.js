@@ -1,25 +1,28 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import Head from "next/head";
 import useSWR from "swr";
-import S from "./../movies.module.scss";
+import S from "./../media/movies.module.scss";
 
-import { UI_I18n_title_pages } from "../../../core/Data/UI_I8n";
+import { UI_I18n_title_pages } from "../../core/Data/UI_I8n";
 
-import Pagination from "../../../core/components/Filter/Pagination/Pagination";
-import List_media from "../../../core/components/List_media/Desktop/List_media";
-import List_media_tablet from "../../../core/components/List_media/Tablet/List_media_tablet";
-import DropList from "../../../core/components/DropList/DropList";
-import { Pagination_input } from "../../../core/components/Filter/Pagination_input/Pagination_input";
+import Pagination from "../../core/components/Filter/Pagination/Pagination";
+import List_media from "../../core/components/List_media/Desktop/List_media";
+import List_media_tablet from "../../core/components/List_media/Tablet/List_media_tablet";
+import DropList from "../../core/components/DropList/DropList";
+import { Pagination_input } from "../../core/components/Filter/Pagination_input/Pagination_input";
 
-import { UIContext } from "../../../core/context/UIProvider/UIProvider";
-import { useURL_TMDB } from "../../../core/hooks/URL_TMDB/useURL_TMDB";
-import useTouchEvent from "../../../core/hooks/touchEvent/useTouchEvent";
-import useMediaQuery from "../../../core/hooks/mediaQueries/useMediaQueries";
+import { UIContext } from "../../core/context/UIProvider/UIProvider";
+import { useURL_TMDB } from "../../core/hooks/URL_TMDB/useURL_TMDB";
+import useTouchEvent from "../../core/hooks/touchEvent/useTouchEvent";
+import useMediaQuery from "../../core/hooks/mediaQueries/useMediaQueries";
+import { useRouter } from "next/router";
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
 export default function Media() {
+  const router = useRouter();
   const [request, setRequest] = useState("search");
+
   const [params, paramsURL] = useURL_TMDB(request);
   const SWR = useSWR(paramsURL[request](), fetcher);
 
@@ -33,6 +36,7 @@ export default function Media() {
   console.log(paramsURL[request]());
 
   useEffect(() => {
+    console.log(router);
     if (
       onTouch.direction_X === "left" &&
       onTouch.percent_X > 20 &&
@@ -50,7 +54,7 @@ export default function Media() {
         params.pagination - 1 === 0 ? params.maxPage : params.pagination - 1;
       paramsURL.setPagination(newPage);
     }
-  }, [onTouch.end]);
+  }, [onTouch.end, router.pathname]);
 
   if (SWR.error)
     return (
@@ -68,6 +72,7 @@ export default function Media() {
       </Head>
 
       <div className="wrapper_inside" ref={pageRef}>
+        {console.log("in search PAGE")}
         <section className={S.media_page}>
           <header>
             <h2>{`${UI_I18n_title_pages.search[UI.language]}`}</h2>

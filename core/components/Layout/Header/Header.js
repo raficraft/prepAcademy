@@ -39,12 +39,12 @@ export default function Header() {
         <header className={S.header}>
           <Burger_menu />
           <nav>
-            <Link href="/">
+            <Link href="/" shallow>
               <a className={S.logo_container}>
                 <TMDB_icon />
               </a>
             </Link>
-            <Link href="/media/movie">
+            <Link href="/media/movie" shallow>
               <a className={S.nav_link}>
                 {UI_I18n_nav.movie.text[UI.language]}
               </a>

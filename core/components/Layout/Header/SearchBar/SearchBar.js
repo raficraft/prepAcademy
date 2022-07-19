@@ -29,20 +29,19 @@ export default function SearchBar() {
   }
 
   function launchSearch(event, slug) {
-    const request = searchInput_Ref.current.value;
+    const request = `query=${searchInput_Ref.current.value}`;
 
-    console.log();
+    //Valid
     if (router.asPath.includes("query")) {
-      router.push(`search?query=${request}&${slug}`);
+      console.log("déja dans un query");
+      router.push(`/search?${request}&${slug}`, null, { shallow: true });
 
       setTimeout(() => {
         router.reload(false);
       }, 50);
       return false;
     }
-
-    console.log(`media/search?query=${request}&${slug}`);
-    router.push(`media/search?query=${request}&${slug}`);
+    router.push(`/search?${request}&${slug}`);
   }
 
   return (
