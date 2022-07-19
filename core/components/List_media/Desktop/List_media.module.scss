@@ -53,6 +53,7 @@
     position: absolute;
     @include responsiveContainer(100%);
     bottom: -25px;
+    padding: 0 0 0 0.75rem;
   }
 
   footer {
