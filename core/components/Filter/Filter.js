@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
+import { UIContext } from "../../context/UIProvider/UIProvider";
+import { UI_I18n_media_filter } from "../../Data/UI_I8n";
 import S from "./Filter.module.scss";
 
 export default function Filter({ request }) {
+  const { UI, callback } = useContext(UIContext);
+
   function handleChange(e) {
     const radioBtn = e.target;
     const call_url = radioBtn.getAttribute("id");
@@ -12,7 +16,7 @@ export default function Filter({ request }) {
     <div className={S.filter_container}>
       <div className={S.bloc_input}>
         <label htmlFor="discoverDESC" tabIndex="1">
-          Popularité +/-
+          {UI_I18n_media_filter.popularityDESC[UI.language]}
           <input
             type="radio"
             id="discoverDESC"
@@ -27,7 +31,7 @@ export default function Filter({ request }) {
 
       <div className={S.bloc_input}>
         <label htmlFor="discoverASC" tabIndex="2">
-          Popularité - /+
+          {UI_I18n_media_filter.popularityASC[UI.language]}
           <input
             type="radio"
             id="discoverASC"
@@ -41,7 +45,7 @@ export default function Filter({ request }) {
       <div className={S.bloc_input}>
         <label htmlFor="discoverByNameASC" tabIndex="3">
           {" "}
-          Titres (de A-Z)
+          {UI_I18n_media_filter.titleASC[UI.language]}
           <input
             type="radio"
             id="discoverByNameASC"
@@ -55,10 +59,40 @@ export default function Filter({ request }) {
       <div className={S.bloc_input}>
         <label htmlFor="discoverByNameDESC" tabIndex="4">
           {" "}
-          Titres (de Z-A)
+          {UI_I18n_media_filter.titleDESC[UI.language]}
           <input
             type="radio"
             id="discoverByNameDESC"
+            name="call_url"
+            onChange={(e) => {
+              handleChange(e);
+            }}
+          />
+        </label>
+      </div>
+
+      <div className={S.bloc_input}>
+        <label htmlFor="voteDESC" tabIndex="4">
+          {" "}
+          {UI_I18n_media_filter.voteDESC[UI.language]}
+          <input
+            type="radio"
+            id="voteDESC"
+            name="call_url"
+            onChange={(e) => {
+              handleChange(e);
+            }}
+          />
+        </label>
+      </div>
+
+      <div className={S.bloc_input}>
+        <label htmlFor="voteASC" tabIndex="3">
+          {" "}
+          {UI_I18n_media_filter.voteASC[UI.language]}
+          <input
+            type="radio"
+            id="voteASC"
             name="call_url"
             onChange={(e) => {
               handleChange(e);

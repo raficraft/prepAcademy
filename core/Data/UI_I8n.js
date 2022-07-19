@@ -55,3 +55,35 @@ export const UI_I18n_media_details = {
     EN: `User<br>note`,
   },
 };
+
+export const UI_I18n_media_filter = {
+  popularityDESC: {
+    FR: `Popularité +/-`,
+    EN: `Popularity -/+`,
+  },
+
+  popularityASC: {
+    FR: `Popularité -/+`,
+    EN: `Popularity +/-`,
+  },
+
+  titleASC: {
+    FR: `Titres (de A-Z)`,
+    EN: ` Titles ( A-Z)`,
+  },
+
+  titleDESC: {
+    FR: `Titres (de Z-A)`,
+    EN: ` Titles (Z-A)`,
+  },
+
+  voteDESC: {
+    FR: `Notes +/-`,
+    EN: `Notes -/+`,
+  },
+
+  voteASC: {
+    FR: `Notes -/+`,
+    EN: `Notes +/-`,
+  },
+};
