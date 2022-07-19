@@ -24,10 +24,10 @@ export function useURL_TMDB(request = "discoverDESC") {
       if (UI.language === "EN") {
         lang = "en-US";
       } else {
-        lang = UI.language.toLowerCase();
+        lang = `${UI.language.toLowerCase()}-${UI.language}`;
       }
 
-      return `language=${lang}-${UI.language}&region=${params.language}`;
+      return `language=${lang}&region=${params.language}`;
     },
 
     getSortBy() {
