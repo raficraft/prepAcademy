@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import React, { createContext, useState } from "react";
 
 export const UIContext = createContext();
@@ -11,6 +12,8 @@ export default function UIProvider({ children }) {
     pagination_UI: 1,
     modal: false,
   });
+
+  const router = useRouter();
 
   const callback = {
     toggleSearchBar() {

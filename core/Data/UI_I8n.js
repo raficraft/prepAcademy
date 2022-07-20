@@ -15,6 +15,23 @@ export const UI_I18n_nav = {
   },
 };
 
+export const UI_I18n_nav_two = {
+  movie: {
+    link: "/movie",
+    text: {
+      FR: "films",
+      EN: "movies",
+    },
+  },
+  tv: {
+    link: "tv",
+    text: {
+      FR: "Émissions télévisées",
+      EN: "Tv show",
+    },
+  },
+};
+
 export const UI_I18n_searchBar = {
   placeholder: {
     FR: "Rechercher un film, une série... 3 caractères minimum",

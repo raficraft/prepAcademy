@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React, { useContext } from "react";
 import { Icon_flag_french, Icon_flag_UK } from "../../../../assets/SVG/UI_icon";
 import { UIContext } from "../../../../context/UIProvider/UIProvider";
@@ -22,24 +23,19 @@ export default function ToggleLang() {
             <h1>Settings</h1>
           </header>
           <footer>
-            <span
-              onClick={() => {
-                callback.toggleLanguage("FR");
-                callback.toggleLanguageSelect();
-              }}
-            >
-              <button type="button">Français</button>
-              <Icon_flag_french />
-            </span>
-            <span
-              onClick={() => {
-                callback.toggleLanguage("EN");
-                callback.toggleLanguageSelect();
-              }}
-            >
-              <button type="button">Anglais</button>
-              <Icon_flag_UK />
-            </span>
+            <Link href="/" locale="fr">
+              <a>
+                Français
+                <Icon_flag_french />
+              </a>
+            </Link>
+
+            <Link href="/en" locale="en">
+              <a>
+                Anglais
+                <Icon_flag_UK />
+              </a>
+            </Link>
           </footer>
         </div>
       )}
