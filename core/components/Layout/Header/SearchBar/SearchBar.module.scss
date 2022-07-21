@@ -34,6 +34,7 @@
     @include responsiveContainer(100%);
     border-bottom: 1px solid;
   }
+  a,
   button {
     display: block;
     width: var(--layout_width);

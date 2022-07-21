@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useContext, useEffect, useState, useRef } from "react";
 import {
@@ -15,6 +16,7 @@ export default function SearchBar() {
   const { UI } = useContext(UIContext);
   const router = useRouter();
   const [isShow, setIsShow] = useState(false);
+  const [resquest, setRequest] = useState("/");
   const searchInput_Ref = useRef();
 
   function showButton(event) {
@@ -24,24 +26,22 @@ export default function SearchBar() {
     if (user_search_SIZE < 3) {
       return false;
     }
-
-    // setIsShow(true);
+    setIsShow(true);
   }
 
   function launchSearch(event, slug) {
-    const request = searchInput_Ref.current.value;
+    const request = `query=${searchInput_Ref.current.value}`;
 
-    console.log();
+    //Valid
     if (router.asPath.includes("query")) {
-      router.push(`search?query=${request}&${slug}`);
-
+      router.push(`/search?${request}&${slug}`);
       setTimeout(() => {
         router.reload(false);
       }, 50);
       return false;
     }
-
-    router.push(`/search?query=${request}&${slug}`);
+    router.push(`/search?${request}&${slug}`);
+    setIsShow(false);
   }
 
   return (
