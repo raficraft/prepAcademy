@@ -7,12 +7,14 @@ export default function Pagination({ callback, page }) {
   const [pagination, setPagination] = useState(page);
 
   function incrementPage() {
-    callback(page + 1);
-    setPagination(page + 1);
+    console.log(typeof page);
+    callback(parseInt(page) + 1);
+    setPagination(parseInt(page) + 1);
   }
 
   function uncrementPage() {
-    const newPage = page - 1 === 0 ? 1 : page - 1;
+    console.log(typeof page);
+    const newPage = parseInt(page) - 1 === 0 ? 1 : parseInt(page) - 1;
     callback(newPage);
     setPagination(newPage);
   }
