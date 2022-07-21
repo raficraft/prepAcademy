@@ -12,13 +12,17 @@ export let Pagination_input = ({ request, currentPage, ref, callback }) => {
     const regex = new RegExp(pattern);
     const isValid = regex.test(e.target.value);
 
+    if (e.target.value === "") {
+      return;
+    }
+
     if (!isValid) {
       setError("Format invalid, number only");
       e.target.value = 1;
       setTimeout(() => {
         setError(false);
       }, 5000);
-      return false;
+      return;
     }
 
     if (e.target.value > params.maxPage) {
