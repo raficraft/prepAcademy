@@ -26,7 +26,6 @@ export default function SearchBar() {
     if (user_search_SIZE < 3) {
       return false;
     }
-
     setIsShow(true);
   }
 
@@ -35,9 +34,7 @@ export default function SearchBar() {
 
     //Valid
     if (router.asPath.includes("query")) {
-      console.log("déja dans un query");
       router.push(`/search?${request}&${slug}`);
-
       setTimeout(() => {
         router.reload(false);
       }, 50);

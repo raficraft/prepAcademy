@@ -29,12 +29,8 @@ export default function Media() {
 
   const pageRef = useRef();
   const { onTouch } = useTouchEvent(pageRef);
-  console.log(SWR);
-
-  console.log(paramsURL[request]());
 
   useEffect(() => {
-    console.log(router);
     if (
       onTouch.direction_X === "left" &&
       onTouch.percent_X > 20 &&
@@ -70,7 +66,6 @@ export default function Media() {
       </Head>
 
       <div className="wrapper_inside" ref={pageRef}>
-        {console.log("in search PAGE")}
         <section className={S.media_page}>
           <header>
             <h2>{`${UI_I18n_title_pages.search[UI.language]}`}</h2>

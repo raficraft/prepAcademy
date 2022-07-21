@@ -32,7 +32,6 @@ export default function Media_info() {
   const isTablet = useMediaQuery("(max-width: 960px)");
 
   function getLastTrailer(videoArray) {
-    console.log("trailer array", videoArray);
     let lastTrailer = videoArray.find((el, key) => el.type === "Trailer");
 
     if (!lastTrailer) {
@@ -42,7 +41,6 @@ export default function Media_info() {
   }
 
   function convertRunTime(time) {
-    console.log(UI);
     if (time < 60) {
       return `${time}m`;
     } else {
@@ -91,8 +89,6 @@ export default function Media_info() {
         <p className="error_text">Failed to load</p>
       </div>
     );
-
-  console.log("render details", SWR.data);
 
   return (
     <>
