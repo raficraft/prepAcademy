@@ -13,7 +13,7 @@ import Layout_container from "../../Layout_container/Layout_container";
 import S from "./SearchBar.module.scss";
 
 export default function SearchBar() {
-  const { UI } = useContext(UIContext);
+  const { UI, callback } = useContext(UIContext);
   const router = useRouter();
   const [isShow, setIsShow] = useState(false);
   const [resquest, setRequest] = useState("/");
@@ -32,6 +32,9 @@ export default function SearchBar() {
   function launchSearch(event, slug) {
     const request = `query=${searchInput_Ref.current.value}`;
 
+    callback.toggleSearchBar();
+    setIsShow(false);
+
     //Valid
     if (router.asPath.includes("query")) {
       router.push(`/search?${request}&${slug}`);
@@ -41,6 +44,10 @@ export default function SearchBar() {
       return false;
     }
     router.push(`/search?${request}&${slug}`);
+  }
+
+  function cleanInput() {
+    searchInput_Ref.current.value = "";
     setIsShow(false);
   }
 
@@ -65,7 +72,11 @@ export default function SearchBar() {
               ref={searchInput_Ref}
             />
             <span className={S.cross_icon}>
-              <Icon_cross />
+              <Icon_cross
+                onClick={() => {
+                  cleanInput();
+                }}
+              />
             </span>
           </div>
         </form>

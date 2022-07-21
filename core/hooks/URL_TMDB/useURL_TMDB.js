@@ -120,7 +120,6 @@ export function useURL_TMDB(request = "discoverDESC") {
 
     search() {
       const params = window.location.search.split("&");
-      console.error(params[0]);
       const query = params[0].replaceAll("%", "+").substring(1);
 
       setParams((S) => ({
