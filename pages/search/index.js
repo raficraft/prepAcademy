@@ -3,13 +3,6 @@ import Head from "next/head";
 import useSWR from "swr";
 import S from "./../media/movies.module.scss";
 
-<<<<<<< HEAD
-import List_media from "../../core/components/List_media/Desktop/List_media";
-import List_media_tablet from "../../core/components/List_media/Tablet/List_media_tablet";
-import DropList from "../../core/components/DropList/DropList";
-import { Pagination_input } from "../../core/components/Filter/Pagination_input/Pagination_input";
-
-=======
 import { UI_I18n_title_pages } from "../../core/Data/UI_I8n";
 
 import Pagination from "../../core/components/Filter/Pagination/Pagination";
@@ -18,17 +11,11 @@ import List_media_tablet from "../../core/components/List_media/Tablet/List_medi
 import DropList from "../../core/components/DropList/DropList";
 import { Pagination_input } from "../../core/components/Filter/Pagination_input/Pagination_input";
 
->>>>>>> features/search
 import { UIContext } from "../../core/context/UIProvider/UIProvider";
 import { useURL_TMDB } from "../../core/hooks/URL_TMDB/useURL_TMDB";
 import useTouchEvent from "../../core/hooks/touchEvent/useTouchEvent";
 import useMediaQuery from "../../core/hooks/mediaQueries/useMediaQueries";
-<<<<<<< HEAD
-import { UI_I18n_title_pages } from "../../core/Data/UI_I8n";
-import Pagination from "../../core/components/Filter/Pagination/Pagination";
-=======
 import { useRouter } from "next/router";
->>>>>>> features/search
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
