@@ -7,6 +7,7 @@ export default function Pagination({ callback, page }) {
   const [pagination, setPagination] = useState(page);
 
   function incrementPage() {
+    console.log("push for vercel update");
     callback(parseInt(parseInt(page)) + 1);
     setPagination(parseInt(parseInt(page)) + 1);
   }
