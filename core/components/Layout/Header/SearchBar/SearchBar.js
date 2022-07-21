@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useContext, useEffect, useState, useRef } from "react";
 import {
@@ -15,6 +16,7 @@ export default function SearchBar() {
   const { UI } = useContext(UIContext);
   const router = useRouter();
   const [isShow, setIsShow] = useState(false);
+  const [resquest, setRequest] = useState("/");
   const searchInput_Ref = useRef();
 
   function showButton(event) {
@@ -34,7 +36,7 @@ export default function SearchBar() {
     //Valid
     if (router.asPath.includes("query")) {
       console.log("déja dans un query");
-      router.push(`/search?${request}&${slug}`, null, { shallow: true });
+      router.push(`/search?${request}&${slug}`);
 
       setTimeout(() => {
         router.reload(false);
@@ -42,6 +44,7 @@ export default function SearchBar() {
       return false;
     }
     router.push(`/search?${request}&${slug}`);
+    setIsShow(false);
   }
 
   return (

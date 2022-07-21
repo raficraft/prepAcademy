@@ -31,6 +31,13 @@ export function useURL_TMDB(request = "discoverDESC") {
         : "sort_by=name";
     },
 
+    getQuery() {
+      const params = router.asPath.replace("/search", "").split("&");
+      const query = params[0].replaceAll("%", "+").substring(1);
+
+      return query;
+    },
+
     discoverASC(slug = params.slug, pagination = params.pagination) {
       return `https://api.themoviedb.org/3/discover/${slug}?sort_by=popularity.asc&${API_KEY}&${this.getLanguage()}&page=${pagination}&include_adult=false`;
     },
@@ -55,18 +62,22 @@ export function useURL_TMDB(request = "discoverDESC") {
 
     credits(slug = params.slug, id = params.id) {
       return `
-      https://api.themoviedb.org/3/${slug}/${
-        params.id
-      }/credits?${API_KEY}&language=${UI.language.toLowerCase()}`;
+      https://api.themoviedb.org/3/${slug}/${id}/credits?${API_KEY}&language=${UI.language.toLowerCase()}`;
     },
 
-    search(slug = params.slug, query = params.query) {
-      console.log("??????????????????????????????????????", params.query);
-      return `   https://api.themoviedb.org/3/search/${
-        params.slug
-      }?${API_KEY}&${params.query}&${this.getLanguage()}&page=${
-        params.pagination
-      }&include_adult=false`;
+    search(
+      slug = params.slug,
+      query = params.query,
+      pagination = params.pagination
+    ) {
+      let queryAlternative = "";
+      if (!query) {
+        queryAlternative = this.getQuery();
+      }
+
+      return `   https://api.themoviedb.org/3/search/${slug}?${API_KEY}&${
+        query ? query : queryAlternative
+      }&${this.getLanguage()}&page=${pagination}&include_adult=false`;
     },
 
     setPagination(page) {
@@ -95,16 +106,9 @@ export function useURL_TMDB(request = "discoverDESC") {
     },
 
     search() {
-      console.log(
-        "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!",
-        window.location.pathname
-      );
       const params = window.location.search.split("&");
-      console.error(params[0]);
       const query = params[0].replaceAll("%", "+").substring(1);
 
-      console.log("slug", params[1]);
-      console.log("requete", query);
       setParams((S) => ({
         ...S,
         slug: params[1],

@@ -12,39 +12,18 @@ import ToggleLang from "./ToggleLang/ToggleLang";
 export default function Header() {
   const { UI, callback } = useContext(UIContext);
 
-  <nav>
-    <Link href="/">
-      <a className={S.logo_container}>
-        <TMDB_icon />
-      </a>
-    </Link>
-    <Link href="/media/movie">
-      <a>{UI_I18n_nav.movie.text[UI.language]}</a>
-    </Link>
-    <Link href="/media/tv">
-      <a>{UI_I18n_nav.tv.text[UI.language]}</a>
-    </Link>
-  </nav>;
-
-  function createNav() {
-    return Object.keys(UI_I18n_nav).map((el, keys) => {
-      const items = UI_I18n_nav[el];
-      return [];
-    });
-  }
-
   return (
     <>
       <Layout_container style={S.layout} id="header_top">
         <header className={S.header}>
           <Burger_menu />
           <nav>
-            <Link href="/" shallow>
+            <Link href="/" replace>
               <a className={S.logo_container}>
                 <TMDB_icon />
               </a>
             </Link>
-            <Link href="/media/movie" shallow>
+            <Link href="/media/movie" replace>
               <a className={S.nav_link}>
                 {UI_I18n_nav.movie.text[UI.language]}
               </a>

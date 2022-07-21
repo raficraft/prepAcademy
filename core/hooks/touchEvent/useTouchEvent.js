@@ -199,6 +199,8 @@ export default function useTouchEvent(ref) {
   useEffect(() => {
     const element = ref.current;
 
+    console.log(element);
+
     element.addEventListener("mousedown", handleStart, true);
     window.addEventListener("mouseup", handleEnd, true);
     window.addEventListener("mousemove", handleMove, true);

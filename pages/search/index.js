@@ -22,11 +22,9 @@ const fetcher = (...args) => fetch(...args).then((res) => res.json());
 export default function Media() {
   const router = useRouter();
   const [request, setRequest] = useState("search");
-
+  const { UI, callback } = useContext(UIContext);
   const [params, paramsURL] = useURL_TMDB(request);
   const SWR = useSWR(paramsURL[request](), fetcher);
-
-  const { UI, callback } = useContext(UIContext);
   const isTablet = useMediaQuery("(max-width: 960px)");
 
   const pageRef = useRef();
@@ -54,7 +52,7 @@ export default function Media() {
         params.pagination - 1 === 0 ? params.maxPage : params.pagination - 1;
       paramsURL.setPagination(newPage);
     }
-  }, [onTouch.end, router.pathname]);
+  }, [onTouch.end]);
 
   if (SWR.error)
     return (
