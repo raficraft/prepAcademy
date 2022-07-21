@@ -14,6 +14,14 @@ export default function List_media({ data, slug }) {
   });
 
   function createItems() {
+    if (!data.results.length) {
+      return (
+        <div className="error_container">
+          <p className="error_text">No results</p>
+        </div>
+      );
+    }
+
     return data.results.map((el, key) => {
       return (
         <Link
