@@ -33,8 +33,6 @@ export default function Media() {
   const pageRef = useRef();
   const { onTouch } = useTouchEvent(pageRef);
 
-  console.log(paramsURL[request]());
-
   useEffect(() => {
     if (
       onTouch.direction_X === "left" &&
