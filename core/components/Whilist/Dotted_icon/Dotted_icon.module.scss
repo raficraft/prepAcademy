@@ -1,1 +1,37 @@
 @import "./../../../sass/function.scss";
+
+$size: 24px;
+$size_point: 4px;
+
+.dotted_menu {
+  content: " ";
+  position: absolute;
+  @include size($size, $size);
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  z-index: 10000;
+  top: 0.625rem;
+  right: 0.625em;
+
+  &:hover {
+    background-color: rgb(33, 119, 168);
+  }
+
+  @include flexCenter(row);
+  &_content {
+    @include flexCenter(row);
+    gap: 2px;
+  }
+
+  span {
+    @include size($size_point, $size_point);
+    background-color: black;
+    content: " ";
+    border-radius: 50%;
+  }
+
+  .submenu_wrapper {
+    position: absolute;
+    bottom: -160px;
+  }
+}

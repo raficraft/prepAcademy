@@ -6,6 +6,7 @@ import RadialChart from "../../RadialChart/RadialChart";
 import S from "./List_media.module.scss";
 import { IMG_URL } from "../../../../config/request";
 import { Icon_heart } from "../../../assets/SVG/UI_icon";
+import Dotted_icon from "../../Whilist/Dotted_icon/Dotted_icon";
 
 export default function List_media({ data, slug }) {
   const [size_img, setSize_img] = useState({
@@ -30,6 +31,7 @@ export default function List_media({ data, slug }) {
           title={el.original_title ? el.title : el.name}
         >
           <a className={S.container}>
+            <Dotted_icon />
             <div className={`${S.img_container} img_media`}>
               {el.poster_path !== null ? (
                 <Image

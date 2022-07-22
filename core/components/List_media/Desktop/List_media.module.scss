@@ -11,6 +11,7 @@
 }
 
 .container {
+  position: relative;
   @include flex(column, space-between, center);
   align-self: stretch;
   @include responsiveContainer(182px);
