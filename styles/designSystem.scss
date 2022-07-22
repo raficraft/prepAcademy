@@ -105,3 +105,7 @@ button {
     @include responsiveContainer(1440px);
   }
 }
+
+.features_notImplemented {
+  text-decoration: line-through;
+}
