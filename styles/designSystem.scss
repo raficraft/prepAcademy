@@ -15,7 +15,7 @@ body {
 }
 
 :root {
-  --layout_width: 1440px;
+  --layout_width: 1400px;
   --border: 1px solid #e3e3e3;
   --shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   --video_width: 1120px;
@@ -102,7 +102,7 @@ button {
   @include responsiveContainer(100%);
   @include flexCenter(column);
   &_inside {
-    @include responsiveContainer(1440px);
+    @include responsiveContainer(var(--layout_width));
   }
 }
 
